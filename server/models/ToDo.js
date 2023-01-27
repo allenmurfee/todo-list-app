@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const productSchema = new Schema({
+const toDoSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -11,26 +11,15 @@ const productSchema = new Schema({
   description: {
     type: String
   },
-  image: {
-    type: String
-  },
-  price: {
-    type: Number,
-    required: true,
-    min: 0.99
-  },
-  quantity: {
-    type: Number,
-    min: 0,
-    default: 0
-  },
-  category: {
-    type: Schema.Types.ObjectId,
-    ref: 'Category',
-    required: true
+  status: {
+    type: String,
+    enum: {
+      values: ['notStarted', 'InProgress', 'finished'],
+      message: '{VALUE} is not supported'
+    }
   }
 });
 
-const Product = mongoose.model('Product', productSchema);
+const Todo = mongoose.model('Todo', toDoSchema);
 
-module.exports = Product;
+module.exports = Todo;
