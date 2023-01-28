@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>React App</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sniglet&display=swap" rel="stylesheet">
+    <title>Todo List App</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+    <!--Header and Navbar-->
+
+    <header class="header">
+      <div>
+        <h1 class="title">To-do List App</h1>
+        <h3>Turn your to-do's into to-done!</h3>
+      </div>
+
+      <div class="navbar">
+        <button class="button">Profile</button>
+        <button class="button">Login/Logout</button>
+      </div>
+    </header>
+
+    <!-- List container sections -->
+    <!-- Note each <section> has a title (<p> tag) and list items within an <ol> tag. Each <li> has three buttons for 'edit', 'move to', and 'delete'-->
+
+  <div>
+    <h2 class="project-title">My Senior Thesis</h2>
+
+    <div class="container">
+      <section class="card start">
+        <p>Haven't Started</p>
+        <ol>
+          <li class="list-item">Final essay draft.
+            <button class="list-button" title="Edit">/</button>
+            <button class="list-button" title="Move to 'In Progress'">></button>
+            <button class="list-button" title="Delete">X</button>
+          </li>
+          <li class="list-item">Organize project research and visuals.
+            <button class="list-button" title="Edit">/</button>
+            <button class="list-button" title="Move to 'In Progress'">></button>
+            <button class="list-button" title="Delete">X</button></li>
+          <li class="list-item"> Create powerpoint presentation.
+            <button class="list-button" title="Edit">/</button>
+            <button class="list-button" title="Move to 'In Progress'">></button>
+            <button class="list-button" title="Delete">X</button></li>
+        </ol>
+      </section>
+      <section class="card progress">
+        <p>In Progress</p>
+        <ol>
+          <li class="list-item">Interview 3 people.
+            <button class="list-button" title="Edit">/</button>
+            <button class="list-button" title="Move to 'Done'">></button>
+            <button class="list-button" title="Delete">X</button></li>
+          <li class="list-item">Second essay draft
+            <button class="list-button" title="Edit">/</button>
+            <button class="list-button" title="Move to 'Done'">></button>
+            <button class="list-button" title="Delete">X</button>.</li>
+        </ol>
+      </section>
+      <section class="card done">
+        <p>Done</p>
+        <ol>
+          <li class="list-item">Create project outline.
+            <button class="list-button" title="Edit">/</button>
+            <button class="list-button" title="Delete">X</button>
+          </li>
+          <li class="list-item">Essay rough draft.
+            <button class="list-button" title="Edit">/</button>
+            <button class="list-button" title="Delete">X</button>
+          </li>
+          <li class="list-item">Gather research materials.
+            <button class="list-button" title="Edit">/</button>
+            <button class="list-button" title="Delete">X</button>
+          </li>
+        </ol>
+      </section>
+    </div>
+    <!-- Add new to-do -->
+    <div class="new-todo">
+      <h3>Add a new to-do!</h3>
+      <input><button class="submit" type="submit">Add</button>
+    </div>
+
+  </div>
+    <!-- Footer -->
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+    <footer>Group 1A - Sophie Carr, Allen Murfee, Brendan Shelton - 2023</footer>
+  </body>
+</html>
