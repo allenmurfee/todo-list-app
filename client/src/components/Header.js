@@ -16,7 +16,8 @@ function Nav() {
     } else {
       return (
         <div class="navbar">
-            <button class="button">Login</button>
+            <button class="button"><Link to="/login">Login</Link></button>
+            <button class="button"><Link to="/signup">Signup</Link></button>
         </div>
       );
     }
