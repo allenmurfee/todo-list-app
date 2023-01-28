@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
+const ToDo = require('./ToDo');
+
 const projectSchema = new Schema({
   title: {
     type: String,
@@ -14,7 +16,8 @@ const projectSchema = new Schema({
   
   deadline: {
     type: String
-  }
+  },
+  toDos: [ToDo.schema]
 });
 
 const Project = mongoose.model('Todo', projectSchema);
