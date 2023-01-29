@@ -1,8 +1,9 @@
 :root {
-    --magenta: rgb(252, 125, 252);
-    --purple: rgb(157, 125, 252);
-    --blue: rgb(73, 170, 255);
-    --lilac: rgb(176, 205, 255);
+   --white: rgb(255, 252, 242);
+   --lightgrey: rgb(204, 197, 185);
+   --mediumgrey: rgb(64, 61, 57);
+   --darkgrey: rgb(37, 36, 34);
+   --red: rgb(235, 94, 40);
 }
 
 * {
@@ -10,7 +11,7 @@
 }
 
 body {
-    background-color: var(--lilac);
+    background-color: var(--white);
     font-family: 'Sniglet', cursive;
 }
 
@@ -22,24 +23,26 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 10px 30px;
-    color: white;
+    color: var(--red);
+   
 }
 
-.button {
-  background-color: var(--magenta);
+.nav-button {
+  background-color: var(--red);
+  color: var(--white);
   border: none;
-  color: white;
   padding: 10px 15px;
   text-align: center;
   text-decoration: none;
   border-radius: 8px;
   font-size: 16px;
+  cursor: pointer;
 }
 
 /* Main To-do section*/
 
 .project-title {
-    color: white;
+    
     text-align: center;
 }
 
@@ -53,23 +56,26 @@ body {
 
 .card {
     width: 32%;
-    color: white;
     text-align: center;
     border-radius: 12px;
     border-style: solid;
+    border-color: black;
     font-size: 25px;
 }
 
 .start {
-    background-color: var(--magenta)
+    background-color: var(--darkgrey);
+    color: var(--lightgrey);
 }
 
 .progress {
-    background-color: var(--purple);
+    background-color: var(--mediumgrey);
+    color: var(--white);
 }
 
 .done {
-    background-color: var(--blue);
+    background-color: var(--lightgrey);
+    color: var(--mediumgrey);
 }
 
 .list-item {
@@ -78,14 +84,15 @@ body {
     border-radius: 8px;
     padding: 3px;
     margin-top: 7px;
-    background-color: rgb(176, 205, 255, 0.4);
+    background-color: rgb(204, 197, 185, .5)
 }
 
 .list-button {
-    background-color: white;
     border-style: none;
     border-radius: 6px;
-    color: var(--blue);
+    color: var(--white);
+    background-color: var(--red);
+    cursor: pointer;
 }
 
 /* New To-do */
@@ -93,9 +100,7 @@ body {
 .new-todo {
     text-align: center;
     border-style: solid;
-    border-color: white;
     border-radius: 12px;
-    color: white;
     width: 20%;
     margin: 3% 40%;
 
@@ -107,12 +112,34 @@ body {
 }
 
 .new-todo button {
-    background-color: var(--magenta);
+    background-color: var(--red);
     border-style: none;
-    border-radius: 2px;
-    color: white;
+    border-radius: 5px;
     padding: 5px;
 }
+
+/* Profile Items*/
+
+.small-header {
+    color: var(--red);
+    text-align: center;
+}
+
+.project-container {
+    width: 70%;
+    margin: 3% 15%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+/* Sign up and log in*/
+
+.text-input {
+    margin-bottom: 10px;
+}
+
+/* Footer */
 
 footer {
     text-align: center;
