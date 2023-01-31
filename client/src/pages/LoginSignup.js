@@ -4,39 +4,19 @@ import { Link, Navigate, Route } from "react-router-dom";
 import Auth from "../utils/auth";
 import Signup from "../components/Signup";
 
-const Login = (props) => {
-  const [formState, setFormState] = useState({ email: "", password: "" });
-  //   LOGIN_USER ISNT DEFINED YET
-  const [login, { error, data }] = useMutation(LOGIN_USER);
+const LoginPage = (props) => {
+//   const [formState, setFormState] = useState({ email: "", password: "" });
+//   //   LOGIN_USER ISNT DEFINED YET
+//   const [login, { error, data }] = useMutation(LOGIN_USER);
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
+//   const handleChange = (event) => {
+//     const { name, value } = event.target;
 
-    setFormState({
-      ...formState,
-      [name]: value,
-    });
-  };
-
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-    console.log(formState);
-    try {
-      const { data } = await login({
-        variables: { ...formState },
-      });
-
-      Auth.login(data.login.token);
-    } catch (e) {
-      console.error(e);
-    }
-
-    // clear form values
-    setFormState({
-      email: "",
-      password: "",
-    });
-  };
+//     setFormState({
+//       ...formState,
+//       [name]: value,
+//     });
+//   };
 
   return (
     <div>
@@ -52,4 +32,4 @@ const Login = (props) => {
   );
 };
 
-export default Login;
+export default LoginPage;

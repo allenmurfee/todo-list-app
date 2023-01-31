@@ -41,7 +41,7 @@ const Signup = (props) => {
     {/* SIGN UP */}
     <div className="card start">
     <h3>Sign Up!</h3>
-    <form>
+    <form onSubmit ={handleFormSubmit}>
       <label>Name:</label>
       <input
         type="text"
