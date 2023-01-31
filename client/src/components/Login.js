@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { Link, Navigate, Route } from "react-router-dom";
 import Auth from "../utils/auth";
-import Signup from "../components/Signup";
 
 const Login = (props) => {
   const [formState, setFormState] = useState({ email: "", password: "" });
@@ -40,13 +39,37 @@ const Login = (props) => {
 
   return (
     <div>
-      <h1 className="small-header">
-        Welcome to To-do List App! Please log in or sign up.
-      </h1>
-
-      <div className="project-container">
-        <Signup />
-        <Login />
+      {/* LOGIN */}
+      <div className="card done">
+        <h3>Log In!</h3>
+        <form onSubmit={handleFormSubmit}>
+          <label>Email:</label>
+          <input
+            type="email"
+            className="text-input"
+            name="email"
+            placeholder="Email"
+            value={formState.email}
+            onChange={handleChange}
+          />
+          <br />
+          <label>Password:</label>
+          <input
+            type="password"
+            className="text-input"
+            name="password"
+            placeholder="Password"
+            value={formState.password}
+            onChange={handleChange}
+          />
+          <br />
+          <button type="submit">Submit</button>
+          {data ? (
+            <Navigate to="/dashboard" replace={true} />
+          ) : (
+            <p>Your email or password is wrong.</p>
+          )}
+        </form>
       </div>
     </div>
   );

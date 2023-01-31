@@ -1,0 +1,81 @@
+import React, { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { Link, Navigate, Route } from "react-router-dom";
+import Auth from "../utils/auth";
+
+const Signup = (props) => {
+  const [formState, setFormState] = useState({ name: "", email: "", password: "" });
+  //   LOGIN_USER ISNT DEFINED YET
+  const [addUser, { error, data }] = useMutation(ADD_USER);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    console.log(formState);
+    try {
+      const { data } = await addUser({
+        variables: { ...formState },
+      });
+
+      Auth.login(data.login.token);
+    } catch (e) {
+      console.error(e);
+    }
+
+    // clear form values
+    setFormState({
+      email: "",
+      password: "",
+    });
+  };
+  return (
+    <div>
+    {/* SIGN UP */}
+    <div className="card start">
+    <h3>Sign Up!</h3>
+    <form>
+      <label>Name:</label>
+      <input
+        type="text"
+        className="text-input"
+        name="name"
+        placeholder="Name"
+        value={formState.name}
+        onChange={handleChange}
+      />
+      <br />
+      <label>Email:</label>
+      <input
+        type="email"
+        className="text-input"
+        name="email"
+        placeholder="Email"
+        value={formState.email}
+        onChange={handleChange}
+      />
+      <br />
+      <label>Password:</label>
+      <input
+        type="password"
+        className="text-input"
+        name="password"
+        placeholder="Password"
+        value={formState.password}
+        onChange={handleChange}
+      />
+      <br />
+    </form>
+  </div>
+  </div>
+  )
+}
+
+export default Signup;
