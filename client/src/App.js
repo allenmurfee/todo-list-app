@@ -40,12 +40,14 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <TodoListProvider>
-        <Header />
-        <Project />
-        <AddNew />
-        <Footer />
-      </TodoListProvider>
+      <Router>
+        <TodoListProvider>
+          <Header />
+          <Project />
+          <AddNew />
+          <Footer />
+        </TodoListProvider>
+      </Router>
     </ApolloProvider>
   );
 }

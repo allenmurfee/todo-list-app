@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { Link } from "react-router-dom";
+import { Link, Navigate, Route } from "react-router-dom";
 import Auth from "../utils/auth";
 
 const Login = (props) => {
@@ -45,6 +44,7 @@ const Login = (props) => {
       </h1>
 
       <div className="project-container">
+        {/* SIGN UP */}
         <div className="card start">
           <h3>Sign Up!</h3>
           <form>
@@ -83,15 +83,19 @@ const Login = (props) => {
           </form>
         </div>
 
+        {/* LOGIN */}
         <div className="card done">
+          {/* {data ?  <Navigate to="/dashboard" replace={true} /> } */}
           <h3>Log In!</h3>
-          <form>
+          <form onSubmit={handleFormSubmit}>
             <label>Email:</label>
             <input
               type="email"
               className="text-input"
               name="email"
               placeholder="Email"
+              value={formState.email}
+              onChange={handleChange}
             />
             <br />
             <label>Password:</label>
@@ -100,8 +104,11 @@ const Login = (props) => {
               className="text-input"
               name="password"
               placeholder="Password"
+              value={formState.password}
+              onChange={handleChange}
             />
             <br />
+            <button type="submit">Submit</button>
           </form>
         </div>
       </div>
