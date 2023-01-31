@@ -37,4 +37,74 @@ const Login = (props) => {
       password: "",
     });
   };
+
+  return (
+    <div>
+      <h1 className="small-header">
+        Welcome to To-do List App! Please log in or sign up.
+      </h1>
+
+      <div className="project-container">
+        <div className="card start">
+          <h3>Sign Up!</h3>
+          <form>
+            <label>First Name:</label>
+            <input
+              type="text"
+              className="text-input"
+              name="first-name"
+              placeholder="First Name"
+            />
+            <br />
+            <label>Last Name:</label>
+            <input
+              type="text"
+              className="text-input"
+              name="last-name"
+              placeholder="Last Name"
+            />
+            <br />
+            <label>Email:</label>
+            <input
+              type="email"
+              className="text-input"
+              name="email"
+              placeholder="Email"
+            />
+            <br />
+            <label>Password:</label>
+            <input
+              type="password"
+              className="text-input"
+              name="password"
+              placeholder="Password"
+            />
+            <br />
+          </form>
+        </div>
+
+        <div className="card done">
+          <h3>Log In!</h3>
+          <form>
+            <label>Email:</label>
+            <input
+              type="email"
+              className="text-input"
+              name="email"
+              placeholder="Email"
+            />
+            <br />
+            <label>Password:</label>
+            <input
+              type="password"
+              className="text-input"
+              name="password"
+              placeholder="Password"
+            />
+            <br />
+          </form>
+        </div>
+      </div>
+    </div>
+  );
 };
