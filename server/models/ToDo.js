@@ -3,16 +3,14 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const toDoSchema = new Schema({
-  name: {
+  description: {
     type: String,
     required: true,
     trim: true
   },
-  description: {
-    type: String
-  },
   status: {
     type: String,
+    default: 'notStarted',
     enum: {
       values: ['notStarted', 'InProgress', 'finished'],
       message: '{VALUE} is not supported'

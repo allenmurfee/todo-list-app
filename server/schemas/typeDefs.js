@@ -1,37 +1,25 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-  type Category {
+  type Project {
     _id: ID
-    name: String
-  }
-
-  type Product {
-    _id: ID
-    name: String
+    title: String
     description: String
-    image: String
-    quantity: Int
-    price: Float
-    category: Category
+    deadline: String
+    toDos: [ToDo]
   }
 
-  type Order {
+  type ToDo {
     _id: ID
-    purchaseDate: String
-    products: [Product]
+    description: String
+    status: String
   }
 
   type User {
     _id: ID
-    firstName: String
-    lastName: String
+    name: String
     email: String
-    orders: [Order]
-  }
-
-  type Checkout {
-    session: ID
+    projects: [Project]!
   }
 
   type Auth {
@@ -40,19 +28,19 @@ const typeDefs = gql`
   }
 
   type Query {
-    categories: [Category]
-    products(category: ID, name: String): [Product]
-    product(_id: ID!): Product
+    projects(user: ID, name: String): [Project]
+    project(projectId: ID!): Project
+    toDos(project: ID): [ToDo]
     user: User
-    order(_id: ID!): Order
-    checkout(products: [ID]!): Checkout
   }
 
   type Mutation {
-    addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
-    addOrder(products: [ID]!): Order
-    updateUser(firstName: String, lastName: String, email: String, password: String): User
-    updateProduct(_id: ID!, quantity: Int!): Product
+    addUser(name: String!, email: String!, password: String!): Auth
+    addProject(title: String!): Project
+    addToDo(projectId: ID, description: String!)
+    updateToDo(toDoId: ID!, status: String!): ToDo
+    deleteProject(projectId: ID!): Project
+    deleteToDo(toDoId: ID!): ToDo
     login(email: String!, password: String!): Auth
   }
 `;

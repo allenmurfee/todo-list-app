@@ -4,24 +4,57 @@ const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
+    project: async (parent, { projectId }) => {
+      return await Project.findById(_id).populate('toDos');
+    },
     projects: async () => {
-      return await Project.find();
+      return await Project.find().populate('toDos');
     },
     todos: async () => {
       return await ToDo.find();
     },
     // todos: async (parent, { category, name }) => {
     // },
+    user: async (parent, args, context) => {
+      if (context.user) {
+        const user = await User.findById(context.user._id).populate('projects');
+
+        return user;
+      }
+
+      throw new AuthenticationError('Not logged in');
+    },
   },
   Mutation: {
+    addUser: async (parent, { username, email, password }) => {
+      const user = await User.create({ username, email, password });
+      const token = signToken(user);
+
+      return { token, user };
+    },
     addProject: async (parent, args) => {
-      const project = await Project.create(args);
+      if (context.user) {
+        const project = await Project.create(args);
+
+        await User.findByIdAndUpdate(context.user._id, { $push: {projects: project } });
+
+        return project
+      }
+
+      throw new AuthenticationError('Not logged in');
+     
       // const token = signToken(user);
+      
     },
-    addToDo: async (parent, args) => {
-      const todo = await ToDo.create(args);
+    addToDo: async (parent, {projectId, description}) => {
+      
+      const todo = await ToDo.create(description);     
+      
+      await Project.findByIdAndUpdate(projectId, { $push: {toDos: todo } });
+
+      return todo
     },
-    updateProject: async (parent, args, context) => {
+    /*updateProject: async (parent, args, context) => {
       if (context.user) {
         return await Project.findByIdAndUpdate(context.user._id, args, {
           new: true,
@@ -38,6 +71,21 @@ const resolvers = {
       }
 
       throw new AuthenticationError("Not logged in");
+    },*/
+    updateToDo: async (parent, { projectId, status }, context) => {
+      if (context.user) {
+        return await ToDo.findByIdAndUpdate(projectId, {status: status});
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
+    deleteProject: async (parent, { projectId }) => {
+      return Profile.findOneAndDelete({ _id: profileId })
+      
+    },
+    deleteToDo: async (parent, { toDoId }) => {
+      return Profile.findOneAndDelete({ _id: toDoId })
+      
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });

@@ -5,12 +5,7 @@ const bcrypt = require('bcrypt');
 const Project = require('./Project');
 
 const userSchema = new Schema({
-  firstName: {
-    type: String,
-    required: true,
-    trim: true
-  },
-  lastName: {
+  name: {
     type: String,
     required: true,
     trim: true
