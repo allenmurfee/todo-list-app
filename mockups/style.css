@@ -144,3 +144,15 @@ body {
 footer {
     text-align: center;
 }
+
+@media only screen and (max-width: 1000px) {
+    .card {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .new-todo {
+        width: 100%;
+        margin: 0%;
+    }
+  }
