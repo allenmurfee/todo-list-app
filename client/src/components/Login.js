@@ -65,9 +65,9 @@ const Login = (props) => {
           <br />
           <button type="submit">Submit</button>
           {data ? (
-            <Navigate to="/dashboard" replace={true} />
+            <Navigate to="/profile" replace={true} />
           ) : (
-            <p>Your email or password is wrong.</p>
+            <p>Your email or password is wrong. Please try again.</p>
           )}
         </form>
       </div>

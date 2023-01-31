@@ -25,7 +25,7 @@ const Signup = (props) => {
         variables: { ...formState },
       });
 
-      Auth.login(data.login.token);
+      Auth.login(data.addUser.token);
     } catch (e) {
       console.error(e);
     }
@@ -72,6 +72,12 @@ const Signup = (props) => {
         onChange={handleChange}
       />
       <br />
+      <button type="submit">Submit</button>
+      {data ? (
+            <Navigate to="/profile" replace={true} />
+          ) : (
+            <p>Invalid email. Please try again.</p>
+          )}
     </form>
   </div>
   </div>
