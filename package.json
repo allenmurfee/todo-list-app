@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/allenmurfee/todo-list-app/issues"
   },
-  "homepage": "https://github.com/allenmurfee/todo-list-app#readme"
+  "homepage": "https://github.com/allenmurfee/todo-list-app#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3"
+  }
 }
