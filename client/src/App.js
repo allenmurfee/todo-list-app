@@ -41,12 +41,12 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <TodoListProvider>
+        {/* <TodoListProvider> */}
           <Header />
           <Project />
           <AddNew />
           <Footer />
-        </TodoListProvider>
+        {/* </TodoListProvider> */}
       </Router>
     </ApolloProvider>
   );

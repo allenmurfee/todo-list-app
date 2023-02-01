@@ -1,4 +1,5 @@
 import React, { useReducer } from "react";
+import { Navigate } from "react-router-dom";
 import Auth from '../utils/auth'
 
 const Profile = ({ projects }) => {
@@ -13,7 +14,7 @@ const Profile = ({ projects }) => {
     return (
         <div>
         <div className="small-header">
-      <h1>Welcome, {user.name}!</h1>
+      <h1>Welcome, name!</h1>
     </div>
 
     <div className="project-container">
