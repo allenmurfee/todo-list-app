@@ -22,14 +22,14 @@ export default function Header() {
     return (
       <header className="header">
         <div>
-          <h1 className="title">To-do List App</h1>
+          <h1 className="title"><Link to = "/">To-do List App</Link></h1>
           <h3>Turn your to-do's into to-done!</h3>
         </div>
         <div className="navbar">
-          <button className="button">
+          <button className="nav-button">
             <Link to="/login">Login</Link>
           </button>
-          <button className="button">
+          <button className="nav-button">
             <Link to="/profile">Profile</Link>
           </button>
         </div>
