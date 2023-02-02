@@ -1,6 +1,11 @@
 import React from "react";
+import AddNew from "../components/AddNew";
+import Auth from "../utils/auth";
+import { Navigate } from "react-router-dom";
 
 function ProjectComponent() {
+ 
+  if (Auth.loggedIn()) {
   return (
     <div className="container">
       <section className="card start">
@@ -11,7 +16,10 @@ function ProjectComponent() {
             <button className="list-button" title="Edit">
               /
             </button>
-            <button className="list-button" title="Move to 'In Progress'"></button>
+            <button
+              className="list-button"
+              title="Move to 'In Progress'"
+            ></button>
             <button className="list-button" title="Delete">
               X
             </button>
@@ -21,7 +29,10 @@ function ProjectComponent() {
             <button className="list-button" title="Edit">
               /
             </button>
-            <button className="list-button" title="Move to 'In Progress'"></button>
+            <button
+              className="list-button"
+              title="Move to 'In Progress'"
+            ></button>
             <button className="list-button" title="Delete">
               X
             </button>
@@ -32,7 +43,10 @@ function ProjectComponent() {
             <button className="list-button" title="Edit">
               /
             </button>
-            <button className="list-button" title="Move to 'In Progress'"></button>
+            <button
+              className="list-button"
+              title="Move to 'In Progress'"
+            ></button>
             <button className="list-button" title="Delete">
               X
             </button>
@@ -97,8 +111,12 @@ function ProjectComponent() {
           </li>
         </ol>
       </section>
+
+      <AddNew />
     </div>
-  );
+  )} else {
+    return <Navigate to="/login" replace={true}/>
+  }
 }
 
 export default ProjectComponent;
