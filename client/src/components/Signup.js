@@ -40,6 +40,7 @@ const Signup = (props) => {
 
     // clear form values
     setFormState({
+      name: "",
       email: "",
       password: "",
     });
