@@ -36,3 +36,161 @@
     transform: rotate(360deg);
   }
 }
+:root {
+  --white: rgb(255, 252, 242);
+  --lightgrey: rgb(204, 197, 185);
+  --mediumgrey: rgb(64, 61, 57);
+  --darkgrey: rgb(37, 36, 34);
+  --red: rgb(235, 94, 40);
+}
+
+* {
+   box-sizing: border-box;
+}
+
+body {
+   background-color: var(--white);
+   font-family: 'Sniglet', cursive;
+}
+
+/*Header and Navbar*/
+
+.header {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+   align-items: center;
+   padding: 10px 30px;
+   color: var(--red);
+  
+}
+
+.nav-button {
+ background-color: var(--red);
+ color: var(--white);
+ border: none;
+ padding: 10px 15px;
+ text-align: center;
+ text-decoration: none;
+ border-radius: 8px;
+ font-size: 16px;
+ cursor: pointer;
+}
+
+/* Main To-do section*/
+
+.project-title {
+   
+   text-align: center;
+}
+
+.container {
+   width: 70%;
+   margin: 2% 15%;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+}
+
+.card {
+   width: 32%;
+   text-align: center;
+   border-radius: 12px;
+   border-style: solid;
+   border-color: black;
+   font-size: 25px;
+}
+
+.start {
+   background-color: var(--darkgrey);
+   color: var(--lightgrey);
+}
+
+.progress {
+   background-color: var(--mediumgrey);
+   color: var(--white);
+}
+
+.done {
+   background-color: var(--lightgrey);
+   color: var(--mediumgrey);
+}
+
+.list-item {
+   border-style: solid;
+   width: 90%;
+   border-radius: 8px;
+   padding: 3px;
+   margin-top: 7px;
+   background-color: rgb(204, 197, 185, .5)
+}
+
+.list-button {
+   border-style: none;
+   border-radius: 6px;
+   color: var(--white);
+   background-color: var(--red);
+   cursor: pointer;
+}
+
+/* New To-do */
+
+.new-todo {
+   text-align: center;
+   border-style: solid;
+   border-radius: 12px;
+   width: 20%;
+   margin: 3% 40%;
+
+}
+
+.new-todo input {
+   margin-bottom: 15px;
+   margin-right: 3px;
+}
+
+.new-todo button {
+   background-color: var(--red);
+   border-style: none;
+   border-radius: 5px;
+   padding: 5px;
+}
+
+/* Profile Items*/
+
+.small-header {
+   color: var(--red);
+   text-align: center;
+}
+
+.project-container {
+   width: 70%;
+   margin: 3% 15%;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-around;
+}
+
+/* Sign up and log in*/
+
+.text-input {
+   margin-bottom: 10px;
+}
+
+/* Footer */
+
+footer {
+   text-align: center;
+}
+
+@media only screen and (max-width: 1000px) {
+   .card {
+       width: 100%;
+       margin-bottom: 10px;
+   }
+
+   .new-todo {
+       width: 100%;
+       margin: 0%;
+   }
+ }

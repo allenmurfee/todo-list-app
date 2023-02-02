@@ -5,14 +5,14 @@ import { Link } from "react-router-dom";
 export default function Header() {
   if (Auth.loggedIn()) {
     return (
-      <header class="header">
+      <header className="header">
         <div>
-          <h1 class="title">To-do List App</h1>
+          <h1 className="title">To-do List App</h1>
           <h3>Turn your to-do's into to-done!</h3>
         </div>
-        <div class="navbar">
-          <button class="button">Profile</button>
-          <button class="button" onClick={() => Auth.logout()}>
+        <div className="navbar">
+          <button className="button">Profile</button>
+          <button className="button" onClick={() => Auth.logout()}>
             Logout
           </button>
         </div>
@@ -20,17 +20,17 @@ export default function Header() {
     );
   } else {
     return (
-      <header class="header">
+      <header className="header">
         <div>
-          <h1 class="title">To-do List App</h1>
+          <h1 className="title"><Link to = "/">To-do List App</Link></h1>
           <h3>Turn your to-do's into to-done!</h3>
         </div>
-        <div class="navbar">
-          <button class="button">
+        <div className="navbar">
+          <button className="nav-button">
             <Link to="/login">Login</Link>
           </button>
-          <button class="button">
-            <Link to="/signup">Signup</Link>
+          <button className="nav-button">
+            <Link to="/profile">Profile</Link>
           </button>
         </div>
       </header>
