@@ -1,5 +1,5 @@
 import React from "react";
-import AddNew from "./components/AddNew";
+import AddNew from "../components/AddNew";
 import Auth from "../utils/auth";
 import { Navigate } from "react-router-dom";
 
