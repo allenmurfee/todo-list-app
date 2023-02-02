@@ -28,6 +28,10 @@ const Login = (props) => {
       });
 
       Auth.login(data.login.token);
+      
+      if (Auth.loggedIn()) {
+        
+      }
     } catch (e) {
       console.error(e);
     }
