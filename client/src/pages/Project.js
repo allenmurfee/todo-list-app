@@ -115,7 +115,7 @@ function ProjectComponent() {
       <AddNew />
     </div>
   )} else {
-    return <Navigate to="/login" />
+    return <Navigate to="/login" replace={true}/>
   }
 }
 

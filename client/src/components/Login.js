@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { Link, Navigate, Route } from "react-router-dom";
 import Auth from "../utils/auth";
-import { LOGIN } from '../utils/mutations';
-
+import { LOGIN } from "../utils/mutations";
 
 const Login = (props) => {
   const [formState, setFormState] = useState({ email: "", password: "" });
@@ -27,11 +26,9 @@ const Login = (props) => {
         variables: { ...formState },
       });
 
-      Auth.login(data.login.token);
-      
-      if (Auth.loggedIn()) {
-        
-      }
+      Auth.login(data.login.token).then(() => {
+        return <Navigate to="/profile" />;
+      });
     } catch (e) {
       console.error(e);
     }
