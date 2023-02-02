@@ -43,6 +43,10 @@ function App() {
       <Router>
         {/* <TodoListProvider> */}
           <Header />
+          <Routes>
+            <Route path ="/login" element = {<LoginSignup />} />
+            <Route path ="/profile" element = {<Profile />} />
+          </Routes>
           <Project />
           <AddNew />
           <Footer />
