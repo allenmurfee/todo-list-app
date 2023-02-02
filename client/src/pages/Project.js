@@ -1,122 +1,98 @@
 import React from "react";
-import AddNew from "../components/AddNew";
-import Auth from "../utils/auth";
-import { Navigate } from "react-router-dom";
+import { useQuery, useMutation } from '@apollo/client';
+import { QUERY_USER } from '../utils/queries';
 
 function ProjectComponent() {
- 
+  const { data } = useQuery(QUERY_USER);
+  let user = data?.user || {}
+  
   if (Auth.loggedIn()) {
   return (
-    <div className="container">
-      <section className="card start">
-        <p>Haven't Started</p>
-        <ol>
-          <li className="list-item">
-            Final essay draft.
-            <button className="list-button" title="Edit">
-              /
-            </button>
-            <button
-              className="list-button"
-              title="Move to 'In Progress'"
-            ></button>
-            <button className="list-button" title="Delete">
-              X
-            </button>
-          </li>
-          <li className="list-item">
-            Organize project research and visuals.
-            <button className="list-button" title="Edit">
-              /
-            </button>
-            <button
-              className="list-button"
-              title="Move to 'In Progress'"
-            ></button>
-            <button className="list-button" title="Delete">
-              X
-            </button>
-          </li>
-          <li className="list-item">
-            {" "}
-            Create powerpoint presentation.
-            <button className="list-button" title="Edit">
-              /
-            </button>
-            <button
-              className="list-button"
-              title="Move to 'In Progress'"
-            ></button>
-            <button className="list-button" title="Delete">
-              X
-            </button>
-          </li>
-        </ol>
-      </section>
-      <section className="card progress">
-        <p>In Progress</p>
-        <ol>
-          <li className="list-item">
-            Interview 3 people.
-            <button className="list-button" title="Edit">
-              /
-            </button>
-            <button className="list-button" title="Move to 'Done'"></button>
-            <button className="list-button" title="Delete">
-              X
-            </button>
-          </li>
-          <li className="list-item">
-            Second essay draft
-            <button className="list-button" title="Edit">
-              /
-            </button>
-            <button className="list-button" title="Move to 'Done'"></button>
-            <button className="list-button" title="Delete">
-              X
-            </button>
-            .
-          </li>
-        </ol>
-      </section>
-      <section className="card done">
-        <p>Done</p>
-        <ol>
-          <li className="list-item">
-            Create project outline.
-            <button className="list-button" title="Edit">
-              /
-            </button>
-            <button className="list-button" title="Delete">
-              X
-            </button>
-          </li>
-          <li className="list-item">
-            Essay rough draft.
-            <button className="list-button" title="Edit">
-              /
-            </button>
-            <button className="list-button" title="Delete">
-              X
-            </button>
-          </li>
-          <li className="list-item">
-            Gather research materials.
-            <button className="list-button" title="Edit">
-              /
-            </button>
-            <button className="list-button" title="Delete">
-              X
-            </button>
-          </li>
-        </ol>
-      </section>
-
-      <AddNew />
-    </div>
-  )} else {
+      user.projects.map((project) =>{
+         let notStartedToDos = [];
+         let inProgressTodos = [];
+         let finishedToDos = [];
+        
+        for (let toDo in project.toDos) {
+          switch (toDo.status){
+            case 'notStarted':
+              notStartedToDos.push(toDo);
+              break;
+            case 'inProgress':
+              inProgressTodos.push(toDo);
+              break;
+            case 'finished':
+              finishedToDos.push(toDo);
+              break;
+          }
+        }
+        return (
+          <div class="container">
+          <section class="card start">
+          <p>Haven't Started</p>
+          <ol>
+            {notStartedToDos.map((toDo) =>{
+              return (
+            <li class="list-item">
+              {toDo.description}
+              <button class="list-button" title="Edit">
+                /
+              </button>
+              <button class="list-button" title="Move to 'In Progress'"></button>
+              <button class="list-button" title="Delete">
+                X
+              </button>
+            </li>
+              )
+            })}
+          </ol>
+        </section>
+        <section class="card progress">
+          <p>In Progress</p>
+          <ol>
+            {inProgressToDos.map((toDo) =>{
+              return (
+            <li class="list-item">
+              {toDo.description}
+              <button class="list-button" title="Edit">
+                /
+              </button>
+              <button class="list-button" title="Move to 'In Progress'"></button>
+              <button class="list-button" title="Delete">
+                X
+              </button>
+            </li>
+              )
+            })}
+          </ol>
+        </section>
+        <section class="card done">
+          <p>Done</p>
+          <ol>
+            {finishedToDos.map((toDo) =>{
+              return (
+            <li class="list-item">
+              {toDo.description}
+              <button class="list-button" title="Edit">
+                /
+              </button>
+              <button class="list-button" title="Move to 'In Progress'"></button>
+              <button class="list-button" title="Delete">
+                X
+              </button>
+            </li>
+              )
+            })}
+          </ol>
+        </section>
+      </div>
+        )
+      })
+      
+  );} else {
     return <Navigate to="/login" replace={true}/>
   }
+
 }
 
 export default ProjectComponent;

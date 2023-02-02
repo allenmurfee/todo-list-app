@@ -33,3 +33,20 @@ export const QUERY_TODOS = gql`
         }
     }
 `
+export const QUERY_USER = gql`
+{
+  user {
+    name
+    projects {
+      _id
+      title
+      deadline
+      toDos {
+        _id
+        description
+        status
+      }
+    }
+  }
+}
+`;
