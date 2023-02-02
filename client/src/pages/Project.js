@@ -1,4 +1,5 @@
 import React from "react";
+import AddNew from "./components/AddNew";
 
 function ProjectComponent() {
   return (
@@ -97,6 +98,8 @@ function ProjectComponent() {
           </li>
         </ol>
       </section>
+
+      <AddNew />
     </div>
   );
 }
