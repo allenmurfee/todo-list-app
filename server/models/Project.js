@@ -20,6 +20,6 @@ const projectSchema = new Schema({
   toDos: [ToDo.schema]
 });
 
-const Project = mongoose.model('Todo', projectSchema);
+const Project = mongoose.model('Project', projectSchema);
 
 module.exports = Project;

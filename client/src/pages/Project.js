@@ -5,7 +5,8 @@ import { QUERY_USER } from '../utils/queries';
 function ProjectComponent() {
   const { data } = useQuery(QUERY_USER);
   let user = data?.user || {}
-
+  
+  if (Auth.loggedIn()) {
   return (
       user.projects.map((project) =>{
          let notStartedToDos = [];
@@ -88,7 +89,10 @@ function ProjectComponent() {
         )
       })
       
-  );
+  );} else {
+    return <Navigate to="/login" replace={true}/>
+  }
+
 }
 
 export default ProjectComponent;

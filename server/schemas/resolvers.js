@@ -10,7 +10,7 @@ const resolvers = {
     projects: async () => {
       return await Project.find().populate('toDos');
     },
-    todos: async () => {
+    toDos: async () => {
       return await ToDo.find();
     },
     // todos: async (parent, { category, name }) => {
@@ -26,8 +26,9 @@ const resolvers = {
     },
   },
   Mutation: {
-    addUser: async (parent, { username, email, password }) => {
-      const user = await User.create({ username, email, password });
+    addUser: async (parent, { name, email, password }) => {
+      const user = await User.create({ name, email, password });
+      console.log(user)
       const token = signToken(user);
 
       return { token, user };
