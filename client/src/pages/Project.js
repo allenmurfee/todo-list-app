@@ -4,16 +4,15 @@ import { QUERY_USER } from "../utils/queries";
 import Auth from "../utils/auth";
 import { Navigate, useParams } from "react-router-dom";
 
-
 function ProjectComponent(props) {
-  console.log(props)
+  console.log(props);
   const { data } = useQuery(QUERY_USER);
-  console.log(data)
-  const { projectId } = useParams()
-  console.log(projectId)
+  console.log(data);
+  const { projectId } = useParams();
+  console.log(projectId);
   //TODO: Query by single project
   let user = data?.user || {};
-  console.log(user)
+  console.log(user);
 
   if (Auth.loggedIn()) {
     user.projects.map((project) => {
@@ -100,7 +99,6 @@ function ProjectComponent(props) {
                   </li>
                 );
               })}
-
             </ol>
           </section>
         </div>
