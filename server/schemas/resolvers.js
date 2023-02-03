@@ -73,9 +73,9 @@ const resolvers = {
 
       throw new AuthenticationError("Not logged in");
     },*/
-    updateToDo: async (parent, { projectId, status }, context) => {
+    updateToDo: async (parent, { toDoId, description, status }, context) => {
       if (context.user) {
-        return await ToDo.findByIdAndUpdate(projectId, {status: status});
+        return await ToDo.findByIdAndUpdate(toDoId, {description: description, status: status});
       }
 
       throw new AuthenticationError("Not logged in");
