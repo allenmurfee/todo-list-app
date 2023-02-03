@@ -100,6 +100,7 @@ function ProjectComponent(props) {
                   </li>
                 );
               })}
+
             </ol>
           </section>
         </div>
