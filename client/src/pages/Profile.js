@@ -1,9 +1,16 @@
 import React, { useReducer } from "react";
 import { Navigate } from "react-router-dom";
 import Auth from "../utils/auth";
+import { QUERY_USER } from "../utils/queries";
+import { useQuery, useMutation } from "@apollo/client";
 
-const Profile = ({ projects }) => {
-  console.log(projects)
+
+const Profile = () => {
+  const { data } = useQuery(QUERY_USER);
+  console.log(data)
+  let projects = data?.user.projects || {};
+  let name = data.user.name
+
   if (!projects.length) {
     return <h2>No To-do Lists Yet!</h2>;
   }
@@ -12,7 +19,7 @@ const Profile = ({ projects }) => {
     return (
       <div>
         <div className="small-header">
-          <h1>Welcome, name!</h1>
+          <h1>Welcome, {name}!</h1>
         </div>
 
         <div className="project-container">
@@ -20,8 +27,8 @@ const Profile = ({ projects }) => {
             <h3>My Current To-do Lists</h3>
             <ol>
               {projects.map((project) => (
-                <li key={project.id} class="list-item">
-                  {project.todo}
+                <li key={project._id} class="list-item">
+                  {project.title}
                   <button class="list-button" title="Delete">
                     X
                   </button>
@@ -30,29 +37,6 @@ const Profile = ({ projects }) => {
             </ol>
           </div>
 
-          <div className="card done">
-            <h3>My Finished To-do Lists</h3>
-            <ol>
-              <li className="list-item">
-                Make Halloween Costume
-                <button className="list-button" title="Delete">
-                  X
-                </button>
-              </li>
-              <li className="list-item">
-                Clean up apartment
-                <button className="list-button" title="Delete">
-                  X
-                </button>
-              </li>
-              <li className="list-item">
-                Prepare for birthday party
-                <button className="list-button" title="Delete">
-                  X
-                </button>
-              </li>
-            </ol>
-          </div>
         </div>
       </div>
     );

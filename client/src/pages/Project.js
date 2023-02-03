@@ -8,6 +8,7 @@ function ProjectComponent() {
   const { data } = useQuery(QUERY_USER);
   console.log(data)
   let user = data?.user || {};
+  console.log(user)
 
   if (Auth.loggedIn()) {
     user.projects.map((project) => {
@@ -20,7 +21,7 @@ function ProjectComponent() {
           case "notStarted":
             notStartedToDos.push(toDo);
             break;
-          case "inProgress":
+          case "InProgress":
             inProgressToDos.push(toDo);
             break;
           case "finished":
