@@ -3,6 +3,7 @@ import { Navigate } from "react-router-dom";
 import Auth from "../utils/auth";
 
 const Profile = ({ projects }) => {
+  console.log(projects)
   if (!projects.length) {
     return <h2>No To-do Lists Yet!</h2>;
   }

@@ -34,14 +34,16 @@ export const ADD_TODO = gql`
 export const DELETE_TODO = gql`
   mutation deleteToDo($toDoId: [ID]!) {
     deleteToDo(toDoId: $toDoId) {
-      
+      _id
     }
   }
 `;
 export const UPDATE_TODO = gql`
-  mutation updateToDo($toDoId: [ID]!, description: String!, status: String!) {
-    updateToDo(toDoId: $toDoId, description: $description! status: $status!) {
-      
+  mutation updateToDo($toDoId: [ID]!, $description: String!, $status: String!) {
+    updateToDo(toDoId: $toDoId, description: $description, status: $status) {
+      _id
+      description
+      status
     }
   }
 `;
