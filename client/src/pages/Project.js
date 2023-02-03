@@ -4,7 +4,8 @@ import { QUERY_USER } from "../utils/queries";
 import Auth from "../utils/auth";
 import { Navigate } from "react-router-dom";
 
-function ProjectComponent() {
+function ProjectComponent(props) {
+  console.log(props)
   const { data } = useQuery(QUERY_USER);
   console.log(data)
   let user = data?.user || {};
