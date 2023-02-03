@@ -94,6 +94,7 @@ function ProjectComponent() {
                   </li>
                 );
               })}
+
             </ol>
           </section>
         </div>
