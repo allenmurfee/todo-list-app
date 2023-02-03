@@ -16,10 +16,11 @@ const resolvers = {
     // todos: async (parent, { category, name }) => {
     // },
     user: async (parent, args, context) => {
+      console.log(context)
       if (context.user) {
-        const user = await User.findById(context.user._id).populate('projects');
+        return await User.find().populate('projects');
 
-        return user;
+        
       }
 
       // throw new AuthenticationError('Not logged in');
@@ -42,7 +43,7 @@ const resolvers = {
         return project
       }
 
-      throw new AuthenticationError('Not logged in');
+      // throw new AuthenticationError('Not logged in');
      
       // const token = signToken(user);
       
@@ -73,13 +74,13 @@ const resolvers = {
 
       throw new AuthenticationError("Not logged in");
     },*/
-    updateToDo: async (parent, { toDoId, description, status }, context) => {
-      if (context.user) {
-        return await ToDo.findByIdAndUpdate(toDoId, {description: description, status: status});
-      }
+    // updateToDo: async (parent, { toDoId, description, status }, context) => {
+    //   if (context.user) {
+    //     return await ToDo.findByIdAndUpdate(toDoId, {description: description, status: status});
+    //   }
 
-      throw new AuthenticationError("Not logged in");
-    },
+    //   // throw new AuthenticationError("Not logged in");
+    // },
     deleteProject: async (parent, { projectId }) => {
       return Profile.findOneAndDelete({ _id: profileId })
       
