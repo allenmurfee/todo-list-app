@@ -34,7 +34,7 @@ export const QUERY_TODOS = gql`
     }
 `
 export const QUERY_USER = gql`
-query User {
+{
   user {
     _id
     name
