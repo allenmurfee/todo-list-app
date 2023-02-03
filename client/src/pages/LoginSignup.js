@@ -19,7 +19,7 @@ const LoginPage = (props) => {
   //     });
   //   };
   if (Auth.loggedIn()) {
-    return <Navigate to="/profile" replace={true} />;
+    return <Navigate to="/" replace={true} />;
   } else {
     return (
       <div>

@@ -32,7 +32,7 @@ const Signup = (props) => {
       });
 
       Auth.login(data.addUser.token).then(() => {
-        return <Navigate to="/profile" />;
+        return <Navigate to="/"replace={true} />;
       });
     } catch (e) {
       console.error(e);
@@ -83,7 +83,7 @@ const Signup = (props) => {
           <br />
           <button type="submit">Submit</button>
           {data ? (
-            <Navigate to="/profile" replace={true} />
+            <Navigate to="/" replace={true} />
           ) : (
             <p>Invalid email. Please try again.</p>
           )}
