@@ -20,7 +20,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 // import AddNew from "./components/AddNew";
 import Project from "./pages/Project";
-import Profile from "./pages/Profile";
+import Home from "./pages/Home";
 import LoginSignup from "./pages/LoginSignup";
 
 import "./App.css";
@@ -50,11 +50,11 @@ function App() {
       <Router>
         <Header />
         <Routes>
-          <Route path="/" element={<Project />} />
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<LoginSignup />} />
           <Route
-            path="/profile"
-            element={<Profile />}
+            path="/project/:projectId"
+            element={<Project />}
           />
         </Routes>
         <Footer />

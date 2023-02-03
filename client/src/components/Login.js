@@ -27,7 +27,7 @@ const Login = (props) => {
       });
 
       Auth.login(data.login.token).then(() => {
-        return <Navigate to="/profile" />;
+        return <Navigate to="/" replace={true}/>;
       });
     } catch (e) {
       console.error(e);
@@ -67,11 +67,6 @@ const Login = (props) => {
           />
           <br />
           <button type="submit">Submit</button>
-          {data ? (
-            <Navigate to="/profile" replace={true} />
-          ) : (
-            <p>Your email or password is wrong. Please try again.</p>
-          )}
         </form>
       </div>
     </div>
