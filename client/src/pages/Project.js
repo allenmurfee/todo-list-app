@@ -6,6 +6,7 @@ import { Navigate } from "react-router-dom";
 
 function ProjectComponent() {
   const { data } = useQuery(QUERY_USER);
+  console.log(data)
   let user = data?.user || {};
 
   if (Auth.loggedIn()) {

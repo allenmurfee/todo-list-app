@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import logo from "./logo.svg";
 import {
   ApolloClient,
@@ -8,9 +13,8 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import { useQuery, useMutation } from '@apollo/client';
-import { QUERY_USER } from './utils/queries';
-
+import { useQuery, useMutation } from "@apollo/client";
+import { QUERY_USER } from "./utils/queries";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -44,15 +48,16 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        {/* <TodoListProvider> */}
-          <Header />
-          <Routes>
-            <Route path ="/" element = {<Project />} />
-            <Route path ="/login" element = {<LoginSignup />} />
-            <Route path ="/profile" element = {<Profile />} props = {useQuery(QUERY_USER)}/>
-          </Routes>
-          <Footer />
-        {/* </TodoListProvider> */}
+        <Header />
+        <Routes>
+          <Route path="/" element={<Project />} />
+          <Route path="/login" element={<LoginSignup />} />
+          <Route
+            path="/profile"
+            element={<Profile />}
+          />
+        </Routes>
+        <Footer />
       </Router>
     </ApolloProvider>
   );

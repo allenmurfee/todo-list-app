@@ -3,15 +3,6 @@ const { User, Project, ToDo } = require('../models');
 
 db.once('open', async () => {
   await ToDo.deleteMany();
-
-  // const status = await Todo.insertMany([
-  //   { name: 'Food' },
-  //   { name: 'Household Supplies' },
-  //   { name: 'Electronics' },
-  //   { name: 'Books' },
-  //   { name: 'Toys' }
-  // ]);
-
   console.log('todos seeded');
 
   await Project.deleteMany();
@@ -60,11 +51,8 @@ db.once('open', async () => {
     name: 'Sophie',
     email: 'sophie@testmail.com',
     password: 'password',
-    projects: [
-      {
-        projects: [projects[0]._id, projects[1]._id]
-      }
-    ]
+    projects: [projects[0], projects[1]]
+   
   });
 
   console.log('users seeded');

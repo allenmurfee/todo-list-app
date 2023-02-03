@@ -5,7 +5,7 @@ const { signToken } = require("../utils/auth");
 const resolvers = {
   Query: {
     project: async (parent, { projectId }) => {
-      return await Project.findById(_id).populate('toDos');
+      return await Project.findById(projectId).populate('toDos');
     },
     projects: async () => {
       return await Project.find().populate('toDos');
@@ -22,7 +22,7 @@ const resolvers = {
         return user;
       }
 
-      throw new AuthenticationError('Not logged in');
+      // throw new AuthenticationError('Not logged in');
     },
   },
   Mutation: {
