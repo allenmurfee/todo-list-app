@@ -31,24 +31,20 @@ export const ADD_TODO = gql`
   }
 `;
 
-export const ADD_ORDER = gql`
-  mutation addOrder($products: [ID]!) {
-    addOrder(products: $products) {
-      purchaseDate
-      products {
-        _id
-        name
-        description
-        price
-        quantity
-        category {
-          name
-        }
-      }
+export const DELETE_TODO = gql`
+  mutation deleteToDo($toDoId: [ID]!) {
+    deleteToDo(toDoId: $toDoId) {
+      
     }
   }
 `;
-
+export const UPDATE_TODO = gql`
+  mutation updateToDo($toDoId: [ID]!, description: String!, status: String!) {
+    updateToDo(toDoId: $toDoId, description: $description! status: $status!) {
+      
+    }
+  }
+`;
 export const ADD_USER = gql`
   mutation Mutation($name: String!, $email: String!, $password: String!) {
     addUser(name: $name, email: $email, password: $password) {
