@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,7 +35,8 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
+
 :root {
   --white: rgb(255, 252, 242);
   --lightgrey: rgb(204, 197, 185);
@@ -65,16 +66,26 @@ body {
   
 }
 
+.title a {
+   text-decoration: none;
+   color: var(--red)
+}
+
 .nav-button {
  background-color: var(--red);
  color: var(--white);
  border: none;
  padding: 10px 15px;
+ margin-right: 5px;
  text-align: center;
- text-decoration: none;
  border-radius: 8px;
  font-size: 16px;
  cursor: pointer;
+}
+
+.nav-button a {
+   text-decoration: none;
+   color: var(--white)
 }
 
 /* Main To-do section*/
@@ -128,8 +139,8 @@ body {
 .list-button {
    border-style: none;
    border-radius: 6px;
-   color: var(--white);
-   background-color: var(--red);
+   color: var(--red);
+   background-color: transparent;
    cursor: pointer;
 }
 
