@@ -16,10 +16,11 @@ const resolvers = {
     // todos: async (parent, { category, name }) => {
     // },
     user: async (parent, args, context) => {
+      console.log(context)
       if (context.user) {
-        const user = await User.findById(context.user._id).populate('projects');
+        return await User.find().populate('projects');
 
-        return user;
+        
       }
 
       // throw new AuthenticationError('Not logged in');
