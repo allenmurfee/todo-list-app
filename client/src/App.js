@@ -8,6 +8,9 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
+import { useQuery, useMutation } from '@apollo/client';
+import { QUERY_USER } from './utils/queries';
+
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -46,7 +49,7 @@ function App() {
           <Routes>
             <Route path ="/" element = {<Project />} />
             <Route path ="/login" element = {<LoginSignup />} />
-            <Route path ="/profile" element = {<Profile />} />
+            <Route path ="/profile" element = {<Profile />} props = {useQuery(QUERY_USER)}/>
           </Routes>
           <Footer />
         {/* </TodoListProvider> */}
