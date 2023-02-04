@@ -1,22 +1,25 @@
 import React from "react";
 import { useQuery, useMutation } from "@apollo/client";
-import { QUERY_USER } from "../utils/queries";
+import { QUERY_SINGLE_PROJECT } from "../utils/queries";
 import Auth from "../utils/auth";
 import { Navigate, useParams } from "react-router-dom";
+import AddNew from "../components/AddNew";
 
 
 function ProjectComponent(props) {
   console.log(props)
-  const { data } = useQuery(QUERY_USER);
+  //const { data } = useQuery(QUERY_USER);
   console.log(data)
   const { projectId } = useParams()
   console.log(projectId)
   //TODO: Query by single project
-  let user = data?.user || {};
-  console.log(user)
+  const {  data } = useQuery(QUERY_SINGLE_PROJECT, {
+    variables: { projectId },
+  });
+  let project = data?.project || {};
+  console.log(project)
 
   if (Auth.loggedIn()) {
-    user.projects.map((project) => {
       let notStartedToDos = [];
       let inProgressToDos = [];
       let finishedToDos = [];
@@ -103,9 +106,10 @@ function ProjectComponent(props) {
 
             </ol>
           </section>
+          <AddNew />
         </div>
       );
-    });
+    
   } else {
     return <Navigate to="/login" replace={true} />;
   }
