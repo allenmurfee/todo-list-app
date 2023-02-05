@@ -9,7 +9,7 @@ import AddNew from "../components/AddNew";
 function ProjectComponent(props) {
   console.log(props)
   //const { data } = useQuery(QUERY_USER);
-  console.log(data)
+  //console.log(data)
   const { projectId } = useParams()
   console.log(projectId)
   //TODO: Query by single project

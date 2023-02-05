@@ -33,23 +33,29 @@ export const QUERY_TODOS = gql`
         }
     }
 `
-export const QUERY_USER = gql`
-{
-  user {
-    _id
-    name
-    email
-    projects {
+export const QUERY_USERS =gql`
+    query allUsers {
       _id
-      title
-      deadline
-      description
-      toDos {
+      name
+    }
+`
+export const QUERY_USER = gql`
+  query user($userId: ID!) {
+    user(userId: $userId) {
+      _id
+      name
+      email
+      projects {
         _id
+        title
+        deadline
         description
-        status
+        toDos {
+          _id
+          description
+          status
+        }
       }
     }
-  }
 }
 `;

@@ -6,7 +6,10 @@ import { useQuery, useMutation } from "@apollo/client";
 import { Link } from "react-router-dom";
 
 const Profile = () => {
-  const { data } = useQuery(QUERY_USER);
+  const { data } = useQuery(QUERY_USER, {
+    //need a way to get user ID
+    variables: { userId },
+  });
   console.log(data);
   let projects = data?.user.projects || {};
   console.log(projects)

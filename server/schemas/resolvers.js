@@ -15,16 +15,13 @@ const resolvers = {
     },
     // todos: async (parent, { category, name }) => {
     // },
-    user: async (parent, args, context) => {
-      console.log(context)
-      if (context.user) {
-        return await User.find().populate('projects');
-
-        
-      }
-
-      // throw new AuthenticationError('Not logged in');
+    user: async (parent, { username }) => {
+      return User.findOne({ username }).populate('projects');
+             // throw new AuthenticationError('Not logged in');
     },
+    users: async () => {
+      return User.find();
+    }
   },
   Mutation: {
     addUser: async (parent, { name, email, password }) => {
