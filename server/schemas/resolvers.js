@@ -5,10 +5,10 @@ const { signToken } = require("../utils/auth");
 const resolvers = {
   Query: {
     project: async (parent, { projectId }) => {
-      return await Project.findById(projectId).populate('toDos');
+      return await Project.findById(projectId).populate("toDos");
     },
     projects: async () => {
-      return await Project.find().populate('toDos');
+      return await Project.find().populate("toDos");
     },
     toDos: async () => {
       return await ToDo.find();
@@ -16,11 +16,22 @@ const resolvers = {
     // todos: async (parent, { category, name }) => {
     // },
     user: async (parent, args, context) => {
-      console.log(context)
-      if (context.user) {
-        return await User.find().populate('projects');
+      try {
+        // console.log("Querying user");
+        // // console.log(email)
+        console.log("CONTEXT***********************");
+        console.log(context.user);
+        // console.log(context)
+        if (context.user) {
+          return await User.findById(context.user._id).populate("projects");
+        }
+        // console.log(await User.findOne(email));
+        // // return await User.find()
+        // return await User.findOne({ email });
 
-        
+        // }
+      } catch (error) {
+        console.log(error);
       }
 
       // throw new AuthenticationError('Not logged in');
@@ -29,7 +40,7 @@ const resolvers = {
   Mutation: {
     addUser: async (parent, { name, email, password }) => {
       const user = await User.create({ name, email, password });
-      console.log(user)
+      console.log(user);
       const token = signToken(user);
 
       return { token, user };
@@ -38,23 +49,23 @@ const resolvers = {
       if (context.user) {
         const project = await Project.create(args);
 
-        await User.findByIdAndUpdate(context.user._id, { $push: {projects: project } });
+        await User.findByIdAndUpdate(context.user._id, {
+          $push: { projects: project },
+        });
 
-        return project
+        return project;
       }
 
       // throw new AuthenticationError('Not logged in');
-     
-      // const token = signToken(user);
-      
-    },
-    addToDo: async (parent, {projectId, description}) => {
-      
-      const todo = await ToDo.create(description);     
-      
-      await Project.findByIdAndUpdate(projectId, { $push: {toDos: todo } });
 
-      return todo
+      // const token = signToken(user);
+    },
+    addToDo: async (parent, { projectId, description }) => {
+      const todo = await ToDo.create(description);
+
+      await Project.findByIdAndUpdate(projectId, { $push: { toDos: todo } });
+
+      return todo;
     },
     /*updateProject: async (parent, args, context) => {
       if (context.user) {
@@ -82,29 +93,34 @@ const resolvers = {
     //   // throw new AuthenticationError("Not logged in");
     // },
     deleteProject: async (parent, { projectId }) => {
-      return Profile.findOneAndDelete({ _id: profileId })
-      
+      return Profile.findOneAndDelete({ _id: profileId });
     },
     deleteToDo: async (parent, { toDoId }) => {
-      return Profile.findOneAndDelete({ _id: toDoId })
-      
+      return Profile.findOneAndDelete({ _id: toDoId });
     },
     login: async (parent, { email, password }) => {
-      const user = await User.findOne({ email });
+      try {
+        const user = await User.findOne({ email });
+        console.log(user);
+        if (!user) {
+          throw new AuthenticationError("Incorrect credentials");
+        }
 
-      if (!user) {
-        throw new AuthenticationError("Incorrect credentials");
+        const correctPw = await user.isCorrectPassword(password);
+        console.log("**********************");
+        console.log("correct password below");
+        console.log(correctPw);
+        if (!correctPw) {
+          throw new AuthenticationError("Incorrect credentials");
+        }
+
+        const token = signToken(user);
+        console.log("Token here");
+        console.log(token);
+        return { token, user };
+      } catch (error) {
+        console.log(error);
       }
-
-      const correctPw = await user.isCorrectPassword(password);
-
-      if (!correctPw) {
-        throw new AuthenticationError("Incorrect credentials");
-      }
-
-      const token = signToken(user);
-
-      return { token, user };
     },
   },
 };

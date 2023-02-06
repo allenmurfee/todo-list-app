@@ -19,7 +19,7 @@ const typeDefs = gql`
     _id: ID
     name: String
     email: String
-    projects: [Project]!
+    projects: [Project]
   }
 
   type Auth {
