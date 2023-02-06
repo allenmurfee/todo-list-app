@@ -25,12 +25,17 @@ const Login = (props) => {
       const { data } = await login({
         variables: { ...formState },
       });
+      console.log("data here");
 
-      Auth.login(data.login.token).then(() => {
-        return <Navigate to="/" replace={true}/>;
-      });
+      console.log(data);
+      var authStuff = await Auth.login(data.login.token);
+      console.log("Auth Stuff");
+      console.log(authStuff);
+      // Auth.login(data.login.token).then(() => {
+      //   return <Navigate to="/" replace={true}/>;
+      // });
     } catch (e) {
-      console.error(e);
+      console.error("Login error", e);
     }
 
     // clear form values

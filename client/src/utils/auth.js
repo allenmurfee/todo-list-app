@@ -18,6 +18,8 @@ class AuthService {
         return true;
       } else return false;
     } catch (err) {
+      console.log("token is expired")
+      console.log(err)
       return false;
     }
   }

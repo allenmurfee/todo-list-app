@@ -6,10 +6,10 @@ import { useQuery, useMutation } from "@apollo/client";
 import { Link } from "react-router-dom";
 
 const Profile = () => {
-  const { data } = useQuery(QUERY_USER);
-  console.log(data);
-  let projects = data?.user.projects || {};
-  console.log(projects)
+  const { loading, data } = useQuery(QUERY_USER)
+  console.log("Home page data", data);
+  // let projects = data?.user.projects || {};
+  // // console.log(projects)
   let name = data?.user.name || {};
 
   // if (!projects.length) {
@@ -26,7 +26,7 @@ const Profile = () => {
         <div className="project-container">
           <div className="card start">
             <h3>My Current To-do Lists</h3>
-            <ol>
+            {/* <ol>
               {projects.map((project) => (
                 <li key={project._id} className="list-item">
                   <Link to={`/project/${project._id}`}>
@@ -37,7 +37,7 @@ const Profile = () => {
                   </Link>
                 </li>
               ))}
-            </ol>
+            </ol> */}
           </div>
         </div>
       </div>
