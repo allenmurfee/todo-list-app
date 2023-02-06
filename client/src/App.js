@@ -56,6 +56,7 @@ function App() {
             path="/project/:projectId"
             element={<Project />}
           />
+          <Route path="*" element={<Home />} />
         </Routes>
         <Footer />
       </Router>
