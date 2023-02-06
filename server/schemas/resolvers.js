@@ -5,6 +5,8 @@ const { signToken } = require("../utils/auth");
 const resolvers = {
   Query: {
     project: async (parent, { projectId }) => {
+      console.log("************ Project found by ID")
+      console.log(await Project.findById(projectId).populate("toDos"))
       return await Project.findById(projectId).populate("toDos");
     },
     projects: async () => {
