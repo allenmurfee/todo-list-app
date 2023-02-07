@@ -4,12 +4,13 @@ import { QUERY_PROJECT } from "../utils/queries";
 import Auth from "../utils/auth";
 import { Navigate, useParams } from "react-router-dom";
 import AddNew from "../components/AddNew";
+import DeleteToDo from "../components/DeleteToDo";
 
 function ProjectComponent() {
   const { projectId } = useParams();
   console.log("projectId:", projectId);
 
-  //TODO: Query by single project
+  //Query by a single project
   const { loading, data } = useQuery(QUERY_PROJECT, {
     variables: { projectId: projectId },
   });
@@ -18,11 +19,9 @@ function ProjectComponent() {
   console.log("project info:", project);
   console.log("todos", project.toDos);
 
-  if (Auth.loggedIn && loading){
-    return (
-      <h2>Loading...</h2>
-    )
-  }else if(Auth.loggedIn()) {
+  if (Auth.loggedIn && loading) {
+    return <h2>Loading...</h2>;
+  } else if (Auth.loggedIn()) {
     let notStartedToDos = [];
     let inProgressToDos = [];
     let finishedToDos = [];
@@ -30,7 +29,7 @@ function ProjectComponent() {
     let toDos = project.toDos ? project.toDos : [];
     console.log("toDos:", toDos);
     // console.log(typeof toDos);
-    console.log(toDos[0].status)
+    console.log(toDos[0].status);
     // console.log(toDos.length)
     // let stringifyToDos = JSON.stringify(toDos)
     // console.log(stringifyToDos)
@@ -38,13 +37,13 @@ function ProjectComponent() {
     for (let i = 0; i < toDos.length; i++) {
       switch (toDos[i].status) {
         case "notStarted":
-          notStartedToDos.push(toDos[i].description);
+          notStartedToDos.push(toDos[i]);
           break;
         case "InProgress":
-          inProgressToDos.push(toDos[i].description);
+          inProgressToDos.push(toDos[i]);
           break;
         case "finished":
-          finishedToDos.push(toDos[i].description);
+          finishedToDos.push(toDos[i]);
           break;
         default:
           console.log("No ToDos");
@@ -62,7 +61,7 @@ function ProjectComponent() {
             {notStartedToDos.map((toDo) => {
               return (
                 <li className="list-item">
-                  {toDo}
+                  {toDo.description}
                   <button className="list-button" title="Edit">
                     /
                   </button>
@@ -70,9 +69,7 @@ function ProjectComponent() {
                     className="list-button"
                     title="Move to 'In Progress'"
                   ></button>
-                  <button className="list-button" title="Delete">
-                    X
-                  </button>
+                  <DeleteToDo toDoId={toDo._id} projectId={projectId} />
                 </li>
               );
             })}
@@ -84,7 +81,7 @@ function ProjectComponent() {
             {inProgressToDos.map((toDo) => {
               return (
                 <li className="list-item">
-                  {toDo}
+                  {toDo.description}
                   <button className="list-button" title="Edit">
                     /
                   </button>
@@ -92,9 +89,7 @@ function ProjectComponent() {
                     className="list-button"
                     title="Move to 'In Progress'"
                   ></button>
-                  <button className="list-button" title="Delete">
-                    X
-                  </button>
+                  <DeleteToDo toDoId={toDo._id} projectId={projectId} />
                 </li>
               );
             })}
@@ -106,7 +101,7 @@ function ProjectComponent() {
             {finishedToDos.map((toDo) => {
               return (
                 <li className="list-item">
-                  {toDo}
+                  {toDo.description}
                   <button className="list-button" title="Edit">
                     /
                   </button>
@@ -114,9 +109,7 @@ function ProjectComponent() {
                     className="list-button"
                     title="Move to 'In Progress'"
                   ></button>
-                  <button className="list-button" title="Delete">
-                    X
-                  </button>
+                  <DeleteToDo toDoId={toDo._id} projectId={projectId} />
                 </li>
               );
             })}
