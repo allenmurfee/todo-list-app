@@ -31,7 +31,7 @@ const Profile = () => {
                   <Link to={`/project/${project._id}`}>
                     {project.title}
                     <button className="list-button" title="Delete">
-                      X
+                    <i class="fa-solid fa-xmark"></i>
                     </button>
                   </Link>
                 </li>
