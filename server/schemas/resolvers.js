@@ -40,6 +40,7 @@ const resolvers = {
     },
   },
   Mutation: {
+    //Add User
     addUser: async (parent, { name, email, password }) => {
       const user = await User.create({ name, email, password });
       console.log(user);
@@ -47,6 +48,8 @@ const resolvers = {
 
       return { token, user };
     },
+
+    //Add Project
     addProject: async (parent, args) => {
       if (context.user) {
         const project = await Project.create(args);
@@ -69,35 +72,17 @@ const resolvers = {
 
       return todo;
     },
-    /*updateProject: async (parent, args, context) => {
-      if (context.user) {
-        return await Project.findByIdAndUpdate(context.user._id, args, {
-          new: true,
-        });
-      }
 
-      throw new AuthenticationError("Not logged in");
-    },
-    updateProject: async (parent, args, context) => {
-      if (context.user) {
-        return await ToDo.findByIdAndUpdate(context.user._id, args, {
-          new: true,
-        });
-      }
-
-      throw new AuthenticationError("Not logged in");
-    },*/
-    // updateToDo: async (parent, { toDoId, description, status }, context) => {
-    //   if (context.user) {
-    //     return await ToDo.findByIdAndUpdate(toDoId, {description: description, status: status});
-    //   }
-
-    //   // throw new AuthenticationError("Not logged in");
-    // },
+    //Delete Project
     deleteProject: async (parent, { projectId }) => {
       console.log("delete project route hitting - projectId:", projectId);
-      return Project.findByIdAndDelete(projectId);
+      const project = await Project.findByIdAndDelete({ _id: projectId });
+
+      console.log("*****Deleted Project", project);
+      return project;
     },
+
+    //Delete To Do
     deleteToDo: async (parent, { toDoId, projectId }) => {
       console.log("**************TODO ID", toDoId);
       console.log("hitting deleteToDo route");
@@ -110,6 +95,8 @@ const resolvers = {
       console.log("*****Project", project);
       return project;
     },
+
+    //Login
     login: async (parent, { email, password }) => {
       try {
         const user = await User.findOne({ email });
