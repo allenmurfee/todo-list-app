@@ -5,8 +5,8 @@ const { signToken } = require("../utils/auth");
 const resolvers = {
   Query: {
     project: async (parent, { projectId }) => {
-      console.log("************ Project found by ID")
-      console.log(await Project.findById(projectId).populate("toDos"))
+      // console.log("************ Project found by ID");
+      console.log(await Project.findById(projectId).populate("toDos"));
       return await Project.findById(projectId).populate("toDos");
     },
     projects: async () => {
@@ -97,8 +97,17 @@ const resolvers = {
     deleteProject: async (parent, { projectId }) => {
       return Profile.findOneAndDelete({ _id: profileId });
     },
-    deleteToDo: async (parent, { toDoId }) => {
-      return Profile.findOneAndDelete({ _id: toDoId });
+    deleteToDo: async (parent, { toDoId, projectId }) => {
+      console.log("**************TODO ID", toDoId);
+      console.log("hitting deleteToDo route");
+      const project = await Project.findOneAndUpdate(
+        { _id: projectId },
+        { $pull: { toDos: { _id: toDoId } } },
+        { new: true }
+      );
+
+      console.log("*****Project", project);
+      return project;
     },
     login: async (parent, { email, password }) => {
       try {
