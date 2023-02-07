@@ -4,6 +4,7 @@ import Auth from "../utils/auth";
 import { QUERY_USER } from "../utils/queries";
 import { useQuery, useMutation } from "@apollo/client";
 import { Link } from "react-router-dom";
+import DeleteProject from "../components/DeleteProject";
 
 const Profile = () => {
   const { loading, data } = useQuery(QUERY_USER);
@@ -30,9 +31,7 @@ const Profile = () => {
                 <li key={project._id} className="list-item">
                   <Link to={`/project/${project._id}`}>
                     {project.title}
-                    <button className="list-button" title="Delete">
-                      X
-                    </button>
+                    <DeleteProject  projectId={project._id}/>
                   </Link>
                 </li>
               ))}
