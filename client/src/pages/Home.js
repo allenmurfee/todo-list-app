@@ -5,12 +5,13 @@ import { QUERY_USER } from "../utils/queries";
 import { useQuery, useMutation } from "@apollo/client";
 import { Link } from "react-router-dom";
 import AddNewProject from "../components/AddNewProject"
+import DeleteProject from "../components/DeleteProject";
 
-const Profile = () => {
+const Home = () => {
   const { loading, data } = useQuery(QUERY_USER);
   console.log("Home page data", data);
-  let projects = data?.user.projects || [];
-  // // console.log(projects)
+  let projects =  data?.user.projects || [];
+  console.log(projects)
 
   if (loading) {
     return <h1>Loading...</h1>;
@@ -30,9 +31,7 @@ const Profile = () => {
                 <li key={project._id} className="list-item">
                   <Link to={`/project/${project._id}`}>
                     {project.title}
-                    <button className="list-button" title="Delete">
-                      X
-                    </button>
+                    <DeleteProject  projectId={project._id} userId = {data.user._id}/>
                   </Link>
                 </li>
               ))}
@@ -48,4 +47,4 @@ const Profile = () => {
   }
 };
 
-export default Profile;
+export default Home;

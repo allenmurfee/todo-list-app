@@ -40,7 +40,8 @@ const typeDefs = gql`
     addToDo(projectId: ID, description: String!): Project
     updateToDo(toDoId: ID!, description: String!, status: String!): Project
     deleteProject(projectId: ID!): Project
-    deleteToDo(toDoId: ID!): Project
+    removeProjectFromUser(userId: ID!, projectId: ID!): User
+    deleteToDo(projectId: ID!, toDoId: ID!): Project
     login(email: String!, password: String!): Auth
   }
 `;

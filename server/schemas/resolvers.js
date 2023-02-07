@@ -5,8 +5,8 @@ const { signToken } = require("../utils/auth");
 const resolvers = {
   Query: {
     project: async (parent, { projectId }) => {
-      console.log("************ Project found by ID")
-      console.log(await Project.findById(projectId).populate("toDos"))
+      // console.log("************ Project found by ID");
+      console.log(await Project.findById(projectId).populate("toDos"));
       return await Project.findById(projectId).populate("toDos");
     },
     projects: async () => {
@@ -40,6 +40,7 @@ const resolvers = {
     },
   },
   Mutation: {
+    //Add User
     addUser: async (parent, { name, email, password }) => {
       const user = await User.create({ name, email, password });
       console.log(user);
@@ -69,37 +70,45 @@ const resolvers = {
 
       return project;
     },
-    /*updateProject: async (parent, args, context) => {
-      if (context.user) {
-        return await Project.findByIdAndUpdate(context.user._id, args, {
-          new: true,
-        });
-      }
 
-      throw new AuthenticationError("Not logged in");
+    //Delete Project
+    //TODO: Remove project from user 
+    removeProjectFromUser: async (parent, { userId, projectId }) => {
+      console.log("**************USER ID", userId);
+      console.log("hitting removeProjectFromUser route");
+      const project = await User.findOneAndUpdate(
+        { _id: userId },
+        { $pull: { projects: { _id: projectId } } },
+        { new: true }
+      );
+
+      console.log("*****Project", project);
+      return project;
     },
-    updateProject: async (parent, args, context) => {
-      if (context.user) {
-        return await ToDo.findByIdAndUpdate(context.user._id, args, {
-          new: true,
-        });
-      }
 
-      throw new AuthenticationError("Not logged in");
-    },*/
-    // updateToDo: async (parent, { toDoId, description, status }, context) => {
-    //   if (context.user) {
-    //     return await ToDo.findByIdAndUpdate(toDoId, {description: description, status: status});
-    //   }
-
-    //   // throw new AuthenticationError("Not logged in");
-    // },
     deleteProject: async (parent, { projectId }) => {
-      return Profile.findOneAndDelete({ _id: profileId });
+      console.log("delete project route hitting - projectId:", projectId);
+      const project = await Project.findOneAndDelete({ _id: projectId }, {new: true});
+
+      console.log("*****Deleted Project", project);
+      return project;
     },
-    deleteToDo: async (parent, { toDoId }) => {
-      return Profile.findOneAndDelete({ _id: toDoId });
+
+    //Delete To Do
+    deleteToDo: async (parent, { toDoId, projectId }) => {
+      console.log("**************TODO ID", toDoId);
+      console.log("hitting deleteToDo route");
+      const project = await Project.findOneAndUpdate(
+        { _id: projectId },
+        { $pull: { toDos: { _id: toDoId } } },
+        { new: true }
+      );
+
+      console.log("*****Project", project);
+      return project;
     },
+
+    //Login
     login: async (parent, { email, password }) => {
       try {
         const user = await User.findOne({ email });

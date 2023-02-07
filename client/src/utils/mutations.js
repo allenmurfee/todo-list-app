@@ -26,27 +26,73 @@ export const ADD_PROJECT = gql`
   }
 `;
 export const ADD_TODO = gql`
-mutation AddToDo($description: String!, $projectId: ID) {
-  addToDo(description: $description, projectId: $projectId) {
-    _id
-    description
-    toDos {
+  mutation AddToDo($description: String!, $projectId: ID) {
+    addToDo(description: $description, projectId: $projectId) {
       _id
       description
-      status
+      toDos {
+        _id
+        description
+        status
+      }
+      title
     }
-    title
   }
-}
 `;
 
 export const DELETE_TODO = gql`
-  mutation deleteToDo($toDoId: [ID]!) {
-    deleteToDo(toDoId: $toDoId) {
+  mutation Mutation($projectId: ID!, $toDoId: ID!) {
+    deleteToDo(projectId: $projectId, toDoId: $toDoId) {
       _id
+      deadline
+      description
+      title
+      toDos {
+        _id
+        description
+        status
+      }
     }
   }
 `;
+
+export const DELETE_PROJECT = gql`
+  mutation DeleteProject($projectId: ID!) {
+    deleteProject(projectId: $projectId) {
+      _id
+      deadline
+      description
+      title
+      toDos {
+        _id
+        description
+        status
+      }
+    }
+  }
+`;
+
+export const REMOVE_PROJECT_FROM_USER = gql`
+  mutation Mutation($userId: ID!, $projectId: ID!) {
+    removeProjectFromUser(userId: $userId, projectId: $projectId) {
+      _id
+      email
+      name
+      projects {
+        _id
+        deadline
+        description
+        title
+        toDos {
+          _id
+          description
+          status
+        }
+      }
+    }
+  }
+`;
+
 export const UPDATE_TODO = gql`
   mutation updateToDo($toDoId: [ID]!, $description: String!, $status: String!) {
     updateToDo(toDoId: $toDoId, description: $description, status: $status) {
