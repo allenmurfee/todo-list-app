@@ -48,6 +48,22 @@ export const DELETE_TODO = gql`
   }
 `;
 
+export const DELETE_PROJECT = gql`
+  mutation Mutation($projectId: ID!) {
+    deleteToDo(projectId: $projectId) {
+      _id
+      deadline
+      description
+      title
+      toDos {
+        _id
+        description
+        status
+      }
+    }
+  }
+`;
+
 export const UPDATE_TODO = gql`
   mutation updateToDo($toDoId: [ID]!, $description: String!, $status: String!) {
     updateToDo(toDoId: $toDoId, description: $description, status: $status) {
