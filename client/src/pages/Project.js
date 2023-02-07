@@ -5,6 +5,7 @@ import Auth from "../utils/auth";
 import { Navigate, useParams } from "react-router-dom";
 import AddNew from "../components/AddNew";
 import DeleteToDo from "../components/DeleteToDo";
+import ChangeStatus from "../components/ChangeStatus";
 
 function ProjectComponent() {
   const { projectId } = useParams();
@@ -64,13 +65,14 @@ function ProjectComponent() {
               return (
                 <li className="list-item">
                   {toDo.description}
-                  <button className="list-button" title="Edit">
+                  {/* <button className="list-button" title="Edit">
                     /
-                  </button>
-                  <button
+                  </button> */}
+                  {/* <button
                     className="list-button"
                     title="Move to 'In Progress'"
-                  ></button>
+                  ></button> */}
+                  <ChangeStatus toDoId={toDo._id}/>
                   <DeleteToDo toDoId={toDo._id} projectId={projectId} />
                 </li>
               );
@@ -85,13 +87,14 @@ function ProjectComponent() {
               return (
                 <li className="list-item">
                   {toDo.description}
-                  <button className="list-button" title="Edit">
+                  {/* <button className="list-button" title="Edit">
                     /
-                  </button>
-                  <button
+                  </button> */}
+                  {/* <button
                     className="list-button"
-                    title="Move to 'In Progress'"
-                  ></button>
+                    title="Move to 'Done'"
+                  ></button> */}
+                   <ChangeStatus toDoId={toDo._id}/>
                   <DeleteToDo toDoId={toDo._id} projectId={projectId} />
                 </li>
               );
@@ -106,13 +109,13 @@ function ProjectComponent() {
               return (
                 <li className="list-item">
                   {toDo.description}
-                  <button className="list-button" title="Edit">
+                  {/* <button className="list-button" title="Edit">
                     /
-                  </button>
-                  <button
+                  </button> */}
+                  {/* <button
                     className="list-button"
                     title="Move to 'In Progress'"
-                  ></button>
+                  ></button> */}
                   <DeleteToDo toDoId={toDo._id} projectId={projectId} />
                 </li>
               );

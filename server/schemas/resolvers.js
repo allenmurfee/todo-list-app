@@ -91,8 +91,6 @@ const resolvers = {
     deleteProject: async (parent, { projectId }) => {
       console.log("delete project route hitting - projectId:", projectId);
       const project = await Project.findOneAndDelete({ _id: projectId }, {new: true});
-
-      console.log("*****Deleted Project", project);
       return project;
     },
 
