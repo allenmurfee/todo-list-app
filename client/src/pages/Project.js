@@ -122,7 +122,7 @@ function ProjectComponent() {
             })}
           </ol>
         </section>
-        <AddNew />
+        <AddNew projectId={projectId}/>
       </div>
     );
   } else {
