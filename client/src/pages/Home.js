@@ -6,11 +6,11 @@ import { useQuery, useMutation } from "@apollo/client";
 import { Link } from "react-router-dom";
 import DeleteProject from "../components/DeleteProject";
 
-const Home = async () => {
+const Home = () => {
   const { loading, data } = useQuery(QUERY_USER);
   console.log("Home page data", data);
   let projects =  data?.user.projects || [];
-  // // console.log(projects)
+  console.log(projects)
 
   if (loading) {
     return <h1>Loading...</h1>;
