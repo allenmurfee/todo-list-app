@@ -4,22 +4,23 @@ import Auth from "../utils/auth";
 import { QUERY_USER } from "../utils/queries";
 import { useQuery, useMutation } from "@apollo/client";
 import { Link } from "react-router-dom";
+import AddNewProject from "../components/AddNewProject"
+import DeleteProject from "../components/DeleteProject";
 
-const Profile = () => {
+const Home = () => {
   const { loading, data } = useQuery(QUERY_USER);
   console.log("Home page data", data);
-  let projects = data?.user.projects || [];
-  // // console.log(projects)
+  let projects =  data?.user.projects || [];
+  console.log(projects)
 
   if (loading) {
     return <h1>Loading...</h1>;
-  } else if (!projects.length) {
-    return <h2>No To-do Lists Yet!</h2>;
   } else if (Auth.loggedIn()) {
     return (
+      projects.length?
       <div>
         <div className="small-header">
-          <h1>Welcome, name!</h1>
+          <h1>Welcome, {data.user.name}!</h1>
         </div>
 
         <div className="project-container">
@@ -30,20 +31,20 @@ const Profile = () => {
                 <li key={project._id} className="list-item">
                   <Link to={`/project/${project._id}`}>
                     {project.title}
-                    <button className="list-button" title="Delete">
-                    <i class="fa-solid fa-xmark"></i>
-                    </button>
+                    <DeleteProject  projectId={project._id} userId = {data.user._id}/>
                   </Link>
                 </li>
               ))}
             </ol>
+            <AddNewProject userId={data.user._id}/>
           </div>
         </div>
-      </div>
+      </div> :
+     <h2>No To-do Lists Yet!</h2>
     );
   } else {
     return <Navigate to="/login" replace={true} />;
   }
 };
 
-export default Profile;
+export default Home;
