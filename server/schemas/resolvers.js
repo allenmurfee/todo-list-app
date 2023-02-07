@@ -95,7 +95,8 @@ const resolvers = {
     //   // throw new AuthenticationError("Not logged in");
     // },
     deleteProject: async (parent, { projectId }) => {
-      return Profile.findOneAndDelete({ _id: profileId });
+      console.log("delete project route hitting - projectId:", projectId);
+      return Project.findByIdAndDelete(projectId);
     },
     deleteToDo: async (parent, { toDoId, projectId }) => {
       console.log("**************TODO ID", toDoId);

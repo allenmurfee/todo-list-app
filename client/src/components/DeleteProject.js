@@ -3,7 +3,7 @@ import { useMutation } from "@apollo/client";
 import { DELETE_PROJECT } from "../utils/mutations";
 
 export default function DeleteProject({ projectId}) {
-    console.log(projectId);
+    console.log("projectId", projectId);
   
     const [deleteProject, { error, data }] = useMutation(DELETE_PROJECT);
   
@@ -16,7 +16,7 @@ export default function DeleteProject({ projectId}) {
         });
         console.log("deleteToDo data", data);
       } catch (e) {
-        console.error("Error deleting To Do", e);
+        console.error("Error deleting Project", e);
       }
     };
   

@@ -49,8 +49,8 @@ export const DELETE_TODO = gql`
 `;
 
 export const DELETE_PROJECT = gql`
-  mutation Mutation($projectId: ID!) {
-    deleteToDo(projectId: $projectId) {
+  mutation DeleteProject($projectId: ID!) {
+    deleteProject(projectId: $projectId) {
       _id
       deadline
       description
