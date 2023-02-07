@@ -75,6 +75,19 @@ const resolvers = {
 
     //Delete Project
     //TODO: Remove project from user 
+    removeProjectFromUser: async (parent, { userId, projectId }) => {
+      console.log("**************USER ID", userId);
+      console.log("hitting removeProjectFromUser route");
+      const project = await User.findOneAndUpdate(
+        { _id: userId },
+        { $pull: { projects: { _id: projectId } } },
+        { new: true }
+      );
+
+      console.log("*****Project", project);
+      return project;
+    },
+
     deleteProject: async (parent, { projectId }) => {
       console.log("delete project route hitting - projectId:", projectId);
       const project = await Project.findOneAndDelete({ _id: projectId }, {new: true});

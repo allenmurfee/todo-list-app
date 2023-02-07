@@ -30,7 +30,7 @@ const Home = () => {
                 <li key={project._id} className="list-item">
                   <Link to={`/project/${project._id}`}>
                     {project.title}
-                    <DeleteProject  projectId={project._id}/>
+                    <DeleteProject  projectId={project._id} userId = {data.user._id}/>
                   </Link>
                 </li>
               ))}
