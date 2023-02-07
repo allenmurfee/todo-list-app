@@ -30,7 +30,7 @@ const resolvers = {
         // console.log(await User.findOne(email));
         // // return await User.find()
         // return await User.findOne({ email });
-
+        return {}
         // }
       } catch (error) {
         console.log(error);
@@ -66,11 +66,11 @@ const resolvers = {
       // const token = signToken(user);
     },
     addToDo: async (parent, { projectId, description }) => {
-      const todo = await ToDo.create(description);
+     // const todo = await ToDo.create(description);
 
-      await Project.findByIdAndUpdate(projectId, { $push: { toDos: todo } });
+      const project = await Project.findByIdAndUpdate(projectId, { $push: { toDos: {description} } }, {new: true});
 
-      return todo;
+      return project;
     },
 
     //Delete Project

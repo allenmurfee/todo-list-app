@@ -14,10 +14,9 @@ const Home = async () => {
 
   if (loading) {
     return <h1>Loading...</h1>;
-  } else if (!projects.length) {
-    return <h2>No To-do Lists Yet!</h2>;
   } else if (Auth.loggedIn()) {
     return (
+      projects.length?
       <div>
         <div className="small-header">
           <h1>Welcome, name!</h1>
@@ -38,7 +37,8 @@ const Home = async () => {
             </ol>
           </div>
         </div>
-      </div>
+      </div> :
+     <h2>No To-do Lists Yet!</h2>
     );
   } else {
     return <Navigate to="/login" replace={true} />;
