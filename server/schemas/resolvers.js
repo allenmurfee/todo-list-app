@@ -50,13 +50,29 @@ const resolvers = {
     },
     addProject: async (parent, { userId, title, description, deadline }) => {
       //if (context.user) {
-        //const project = await Project.create(args);
+      //const project = await Project.create(args);
 
-        const user = await User.findByIdAndUpdate(userId, {
-          $push: { projects: {title, description, deadline} },
-        }, {new: true});
+      const user = await User.findByIdAndUpdate(
+        userId,
+        {
+          $push: { projects: { title, description, deadline } },
+        },
+        { new: true }
+      );
 
-        return user;
+      return user;
+      //}
+
+      // throw new AuthenticationError('Not logged in');
+
+      // const token = signToken(user);
+    },
+    addProjectToDb: async (parent, { title, description, deadline }) => {
+      console.log("addProjectToDb route being hit");
+      const project = await Project.create({ title, description, deadline });
+
+      console.log(project);
+      return project;
       //}
 
       // throw new AuthenticationError('Not logged in');

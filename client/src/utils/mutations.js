@@ -13,18 +13,55 @@ export const LOGIN = gql`
 `;
 
 export const ADD_PROJECT = gql`
-  mutation AddProject($userId: ID!, $title: String!, $description: String!, $deadline: String!) {
-    addProject(userId: $userId, title: $title, description: $description, deadline: $deadline) {
+  mutation AddProject(
+    $userId: ID!
+    $title: String!
+    $description: String!
+    $deadline: String!
+  ) {
+    addProject(
+      userId: $userId
+      title: $title
+      description: $description
+      deadline: $deadline
+    ) {
       _id
       name
       email
       projects {
         _id
         title
+        description
+        deadline
       }
     }
   }
 `;
+
+export const ADD_PROJECT_TO_DB = gql`
+  mutation addProjectToDb(
+    $title: String!
+    $description: String!
+    $deadline: String!
+  ) {
+    addProjectToDb(
+      title: $title
+      description: $description
+      deadline: $deadline
+    ) {
+      _id
+      deadline
+      description
+      title
+      toDos {
+        _id
+        description
+        status
+      }
+    }
+  }
+`;
+
 export const ADD_TODO = gql`
   mutation AddToDo($description: String!, $projectId: ID) {
     addToDo(description: $description, projectId: $projectId) {
