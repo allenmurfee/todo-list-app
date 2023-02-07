@@ -72,7 +72,11 @@ function ProjectComponent() {
                     className="list-button"
                     title="Move to 'In Progress'"
                   ></button> */}
-                  <ChangeStatus toDoId={toDo._id}/>
+                  <ChangeStatus
+                    toDoId={toDo._id}
+                    toDoStatus={toDo.status}
+                    projectId={projectId}
+                  />
                   <DeleteToDo toDoId={toDo._id} projectId={projectId} />
                 </li>
               );
@@ -94,7 +98,11 @@ function ProjectComponent() {
                     className="list-button"
                     title="Move to 'Done'"
                   ></button> */}
-                   <ChangeStatus toDoId={toDo._id}/>
+                  <ChangeStatus
+                    toDoId={toDo._id}
+                    toDoStatus={toDo.status}
+                    projectId={projectId}
+                  />
                   <DeleteToDo toDoId={toDo._id} projectId={projectId} />
                 </li>
               );
