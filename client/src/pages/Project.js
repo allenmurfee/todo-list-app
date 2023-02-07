@@ -10,7 +10,7 @@ function ProjectComponent() {
   console.log("projectId:", projectId);
 
   //TODO: Query by single project
-  const { data } = useQuery(QUERY_PROJECT, {
+  const { loading, data } = useQuery(QUERY_PROJECT, {
     variables: { projectId: projectId },
   });
   console.log("project data", data);
@@ -18,36 +18,41 @@ function ProjectComponent() {
   console.log("project info:", project);
   console.log("todos", project.toDos);
 
-  if (Auth.loggedIn()) {
+  if (Auth.loggedIn && loading){
+    return (
+      <h2>Loading...</h2>
+    )
+  }else if(Auth.loggedIn()) {
     let notStartedToDos = [];
-    console.log("not started to dos", notStartedToDos);
     let inProgressToDos = [];
-    console.log("in progress to dos", inProgressToDos);
     let finishedToDos = [];
-    console.log("finished to dos", finishedToDos);
 
-    let toDos = project.toDos;
+    let toDos = project.toDos ? project.toDos : [];
     console.log("toDos:", toDos);
-    console.log(typeof toDos)
+    // console.log(typeof toDos);
+    console.log(toDos[0].status)
+    // console.log(toDos.length)
     // let stringifyToDos = JSON.stringify(toDos)
     // console.log(stringifyToDos)
 
-
-    // for (let i = 0; i<stringifyToDos.length; i++)  {
-    //   switch ("test") {
-    //     case "notStarted":
-    //       notStartedToDos.push(this.description);
-    //       break;
-    //     case "InProgress":
-    //       inProgressToDos.push(this.description);
-    //       break;
-    //     case "finished":
-    //       finishedToDos.push(this.description);
-    //       break;
-    //     default:
-    //       console.log("No ToDos");
-    //   }
-    // };
+    for (let i = 0; i < toDos.length; i++) {
+      switch (toDos[i].status) {
+        case "notStarted":
+          notStartedToDos.push(toDos[i].description);
+          break;
+        case "InProgress":
+          inProgressToDos.push(toDos[i].description);
+          break;
+        case "finished":
+          finishedToDos.push(toDos[i].description);
+          break;
+        default:
+          console.log("No ToDos");
+      }
+    }
+    console.log("not started to dos", notStartedToDos);
+    console.log("in progress to dos", inProgressToDos);
+    console.log("finished to dos", finishedToDos);
 
     return (
       <div className="container">
@@ -57,7 +62,7 @@ function ProjectComponent() {
             {notStartedToDos.map((toDo) => {
               return (
                 <li className="list-item">
-                  {toDo.description}
+                  {toDo}
                   <button className="list-button" title="Edit">
                     /
                   </button>
@@ -79,7 +84,7 @@ function ProjectComponent() {
             {inProgressToDos.map((toDo) => {
               return (
                 <li className="list-item">
-                  {toDo.description}
+                  {toDo}
                   <button className="list-button" title="Edit">
                     /
                   </button>
@@ -101,7 +106,7 @@ function ProjectComponent() {
             {finishedToDos.map((toDo) => {
               return (
                 <li className="list-item">
-                  {toDo.description}
+                  {toDo}
                   <button className="list-button" title="Edit">
                     /
                   </button>
