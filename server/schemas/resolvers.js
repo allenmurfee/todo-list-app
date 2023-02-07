@@ -78,27 +78,54 @@ const resolvers = {
     },
 
     // Update to do status
-    updateToDo: async (parent, { projectId, toDoId, toDoStatus }) => {
-      
+    updateToDo: async (parent, { projectId, toDoId, status }) => {
+      console.log("****************update to do route firing");
+      console.log("project id", projectId);
+      console.log("toDo id", toDoId);
+      console.log("toDo status", status);
+
       try {
-        if (toDoStatus === "notStarted") {
+        if (status === "notStarted") {
           const project = await Project.findByIdAndUpdate(
             projectId,
-            { $push: { toDos: { _id: toDoId, status: "InProgress" } } },
+            { $set: { toDos: { _id: toDoId, status: "InProgress" } } },
             { new: true }
           );
 
           return project;
-        } else if (toDoStatus === "InProgress") {
+        } else if (status === "InProgress") {
+          console.log("firing");
           const project = await Project.findByIdAndUpdate(
             projectId,
-            { $push: { toDos: { _id: toDoId, status: "finished" } } },
+            { $set: { toDos: { _id: toDoId, status: "finished" } } },
             { new: true }
           );
+          return project;
         }
       } catch (error) {
         console.log(error);
       }
+      //   if (status === "notStarted") {
+      //     console.log("not started firing");
+      //     const project = await ToDo.findByIdAndUpdate(
+      //       toDoId,
+      //       { $set: { status: "InProgress" } },
+      //       { new: true }
+      //     );
+
+      //     return project;
+      //   } else if (status === "InProgress") {
+      //     console.log("in progress firing");
+      //     const project = await ToDo.findByIdAndUpdate(
+      //       toDoId,
+      //       { $set: { status: "finished" } },
+      //       { new: true }
+      //     );
+      //     return project;
+      //   }
+      // } catch (error) {
+      //   console.log(error);
+      // }
     },
 
     //Delete Project from User

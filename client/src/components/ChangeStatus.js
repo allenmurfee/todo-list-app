@@ -4,6 +4,8 @@ import { UPDATE_TODO } from "../utils/mutations";
 
 export default function ChangeStatus({ toDoId, toDoStatus, projectId }) {
   const [updateToDo, { error, data }] = useMutation(UPDATE_TODO);
+  console.log("project id", projectId)
+  console.log("toDo id", toDoId)
   console.log("toDo Status:", toDoStatus)
 
   const handleClick = async (event) => {
