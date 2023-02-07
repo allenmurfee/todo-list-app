@@ -11,7 +11,6 @@ const Signup = (props) => {
     email: "",
     password: "",
   });
-  //   LOGIN_USER ISNT DEFINED YET
   const [addUser, { error, data }] = useMutation(ADD_USER);
 
   const handleChange = (event) => {
@@ -23,6 +22,7 @@ const Signup = (props) => {
     });
   };
 
+  //Attempt to register new user
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     console.log(formState);
@@ -32,7 +32,7 @@ const Signup = (props) => {
       });
 
       Auth.login(data.addUser.token).then(() => {
-        return <Navigate to="/"replace={true} />;
+        return <Navigate to="/" replace={true} />;
       });
     } catch (e) {
       console.error(e);
@@ -47,7 +47,7 @@ const Signup = (props) => {
   };
   return (
     <div>
-      {/* SIGN UP */}
+      {/* Sign Up form */}
       <div className="card start">
         <h3>Sign Up!</h3>
         <form onSubmit={handleFormSubmit}>

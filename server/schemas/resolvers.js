@@ -30,7 +30,7 @@ const resolvers = {
         // console.log(await User.findOne(email));
         // // return await User.find()
         // return await User.findOne({ email });
-        return {}
+        return {};
         // }
       } catch (error) {
         console.log(error);
@@ -64,15 +64,46 @@ const resolvers = {
       // const token = signToken(user);
     },
     addToDo: async (parent, { projectId, description }) => {
-     // const todo = await ToDo.create(description);
+      // const todo = await ToDo.create(description);
 
-      const project = await Project.findByIdAndUpdate(projectId, { $push: { toDos: {description} } }, {new: true});
+      const project = await Project.findByIdAndUpdate(
+        projectId,
+        { $push: { toDos: { description } } },
+        { new: true }
+      );
 
       return project;
     },
 
-    //Delete Project
-    //TODO: Remove project from user 
+    // Update to do status
+    updateToDo: async (parent, { projectId, toDoId, status }) => {
+      console.log("****************update to do route firing");
+      console.log("project id", projectId);
+      console.log("toDo id", toDoId);
+      console.log("toDo status", status);
+
+      let changeStatus;
+      switch (status) {
+        case "notStarted":
+          changeStatus = "InProgress";
+          break;
+        case "InProgress":
+          changeStatus = "finished";
+          break;
+      }
+      try {
+        const project = await Project.findOneAndUpdate(
+          { _id: projectId, "toDos._id": toDoId },
+          { $set: { "toDos.$.status": changeStatus } },
+          { new: true }
+        );
+        return project;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    //Delete Project from User
     removeProjectFromUser: async (parent, { userId, projectId }) => {
       console.log("**************USER ID", userId);
       console.log("hitting removeProjectFromUser route");
@@ -86,11 +117,13 @@ const resolvers = {
       return project;
     },
 
+    //Delete Project
     deleteProject: async (parent, { projectId }) => {
       console.log("delete project route hitting - projectId:", projectId);
-      const project = await Project.findOneAndDelete({ _id: projectId }, {new: true});
-
-      console.log("*****Deleted Project", project);
+      const project = await Project.findOneAndDelete(
+        { _id: projectId },
+        { new: true }
+      );
       return project;
     },
 
