@@ -34,6 +34,7 @@ function ProjectComponent() {
     // let stringifyToDos = JSON.stringify(toDos)
     // console.log(stringifyToDos)
 
+    //Push each task into array based on status
     for (let i = 0; i < toDos.length; i++) {
       switch (toDos[i].status) {
         case "notStarted":
@@ -58,6 +59,7 @@ function ProjectComponent() {
         <section className="card start">
           <p>Haven't Started</p>
           <ol>
+            {/* Map through each Not Started task to render */}
             {notStartedToDos.map((toDo) => {
               return (
                 <li className="list-item">
@@ -78,6 +80,7 @@ function ProjectComponent() {
         <section className="card progress">
           <p>In Progress</p>
           <ol>
+            {/* Map through each In Progress task to render */}
             {inProgressToDos.map((toDo) => {
               return (
                 <li className="list-item">
@@ -98,6 +101,7 @@ function ProjectComponent() {
         <section className="card done">
           <p>Done</p>
           <ol>
+            {/* Map through each Finished task to render */}
             {finishedToDos.map((toDo) => {
               return (
                 <li className="list-item">
@@ -115,7 +119,7 @@ function ProjectComponent() {
             })}
           </ol>
         </section>
-        <AddNew projectId={projectId}/>
+        <AddNew projectId={projectId} />
       </div>
     );
   } else {
