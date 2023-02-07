@@ -4,6 +4,7 @@ import Auth from "../utils/auth";
 import { QUERY_USER } from "../utils/queries";
 import { useQuery, useMutation } from "@apollo/client";
 import { Link } from "react-router-dom";
+import AddNewProject from "../components/AddNewProject"
 import DeleteProject from "../components/DeleteProject";
 
 const Home = () => {
@@ -19,7 +20,7 @@ const Home = () => {
       projects.length?
       <div>
         <div className="small-header">
-          <h1>Welcome, name!</h1>
+          <h1>Welcome, {data.user.name}!</h1>
         </div>
 
         <div className="project-container">
@@ -35,6 +36,7 @@ const Home = () => {
                 </li>
               ))}
             </ol>
+            <AddNewProject userId={data.user._id}/>
           </div>
         </div>
       </div> :

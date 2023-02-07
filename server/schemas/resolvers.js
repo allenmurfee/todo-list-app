@@ -48,18 +48,16 @@ const resolvers = {
 
       return { token, user };
     },
+    addProject: async (parent, { userId, title, description, deadline }) => {
+      //if (context.user) {
+        //const project = await Project.create(args);
 
-    //Add Project
-    addProject: async (parent, args) => {
-      if (context.user) {
-        const project = await Project.create(args);
+        const user = await User.findByIdAndUpdate(userId, {
+          $push: { projects: {title, description, deadline} },
+        }, {new: true});
 
-        await User.findByIdAndUpdate(context.user._id, {
-          $push: { projects: project },
-        });
-
-        return project;
-      }
+        return user;
+      //}
 
       // throw new AuthenticationError('Not logged in');
 
