@@ -84,48 +84,25 @@ const resolvers = {
       console.log("toDo id", toDoId);
       console.log("toDo status", status);
 
+      let changeStatus;
+      switch (status) {
+        case "notStarted":
+          changeStatus = "InProgress";
+          break;
+        case "InProgress":
+          changeStatus = "finished";
+          break;
+      }
       try {
-        if (status === "notStarted") {
-          const project = await Project.findByIdAndUpdate(
-            projectId,
-            { $set: { toDos: { _id: toDoId, status: "InProgress" } } },
-            { new: true }
-          );
-
-          return project;
-        } else if (status === "InProgress") {
-          console.log("firing");
-          const project = await Project.findByIdAndUpdate(
-            projectId,
-            { $set: { toDos: { _id: toDoId, status: "finished" } } },
-            { new: true }
-          );
-          return project;
-        }
+        const project = await Project.findOneAndUpdate(
+          { _id: projectId, "toDos._id": toDoId },
+          { $set: { "toDos.$.status": changeStatus } },
+          { new: true }
+        );
+        return project;
       } catch (error) {
         console.log(error);
       }
-      //   if (status === "notStarted") {
-      //     console.log("not started firing");
-      //     const project = await ToDo.findByIdAndUpdate(
-      //       toDoId,
-      //       { $set: { status: "InProgress" } },
-      //       { new: true }
-      //     );
-
-      //     return project;
-      //   } else if (status === "InProgress") {
-      //     console.log("in progress firing");
-      //     const project = await ToDo.findByIdAndUpdate(
-      //       toDoId,
-      //       { $set: { status: "finished" } },
-      //       { new: true }
-      //     );
-      //     return project;
-      //   }
-      // } catch (error) {
-      //   console.log(error);
-      // }
     },
 
     //Delete Project from User

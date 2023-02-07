@@ -91,19 +91,19 @@ export const REMOVE_PROJECT_FROM_USER = gql`
 `;
 
 export const UPDATE_TODO = gql`
-  mutation updateToDo($projectId: ID!, $toDoId: ID!, $status: String!) {
-    updateToDo(projectId: $projectId, toDoId: $toDoId, status: $status) {
+  mutation UpdateToDo($projectId: ID!, $status: String!, $toDoId: ID!) {
+    updateToDo(projectId: $projectId, status: $status, toDoId: $toDoId) {
       _id
-    deadline
-    description
-    title
-    toDos {
-      _id
+      deadline
       description
-      status
+      title
+      toDos {
+        _id
+        description
+        status
+      }
     }
   }
-}
 `;
 export const ADD_USER = gql`
   mutation Mutation($name: String!, $email: String!, $password: String!) {

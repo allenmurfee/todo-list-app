@@ -30,7 +30,6 @@ function ProjectComponent() {
     let toDos = project.toDos ? project.toDos : [];
     console.log("toDos:", toDos);
     // console.log(typeof toDos);
-    console.log(toDos[0].status);
     // console.log(toDos.length)
     // let stringifyToDos = JSON.stringify(toDos)
     // console.log(stringifyToDos)
@@ -74,7 +73,7 @@ function ProjectComponent() {
                   ></button> */}
                   <ChangeStatus
                     toDoId={toDo._id}
-                    toDoStatus={toDo.status}
+                    status={toDo.status}
                     projectId={projectId}
                   />
                   <DeleteToDo toDoId={toDo._id} projectId={projectId} />
@@ -100,7 +99,7 @@ function ProjectComponent() {
                   ></button> */}
                   <ChangeStatus
                     toDoId={toDo._id}
-                    toDoStatus={toDo.status}
+                    status={toDo.status}
                     projectId={projectId}
                   />
                   <DeleteToDo toDoId={toDo._id} projectId={projectId} />
@@ -132,7 +131,7 @@ function ProjectComponent() {
         </section>
         <AddNew projectId={projectId} />
       </div>
-    );
+    ) 
   } else {
     return <Navigate to="/login" replace={true} />;
   }
