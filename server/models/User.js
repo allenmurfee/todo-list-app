@@ -20,7 +20,10 @@ const userSchema = new Schema({
     required: true,
     minlength: 5
   },
-  projects: [Project.schema]
+  projects: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Project',
+  }]
 });
 
 // set up pre-save middleware to create password

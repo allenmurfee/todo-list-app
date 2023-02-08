@@ -51,7 +51,7 @@ db.once('open', async () => {
     name: 'Sophie',
     email: 'sophie@testmail.com',
     password: 'password',
-    projects: [projects[0], projects[1]]
+    projects: [...projects]
    
   });
 
