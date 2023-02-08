@@ -12,7 +12,7 @@ const LoginPage = (props) => {
     return (
       <div>
         <h1 className="small-header">
-          Welcome to To-do List App! Please log in or sign up.
+          Welcome to Listify! Please log in or sign up.
         </h1>
 
         <div className="project-container">

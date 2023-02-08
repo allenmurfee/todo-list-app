@@ -44,9 +44,8 @@ const Login = (props) => {
   };
 
   return (
-    <div>
+    <div className="card done">
       {/* Login Form */}
-      <div className="card done">
         <h3>Log In!</h3>
         <form onSubmit={handleFormSubmit}>
           <label>Email:</label>
@@ -71,7 +70,6 @@ const Login = (props) => {
           <br />
           <button type="submit">Submit</button>
         </form>
-      </div>
     </div>
   );
 };
