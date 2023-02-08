@@ -12,7 +12,7 @@
   For our final class project we were assigned to create a MERN stack application from scratch. Our team chose to create a simple to-do list app called Listify. Our app provides a simple way for users to create and organize their to-do lists. From school projects to event planning to simple household chores - Listify makes it easy to arrange the users tasks as ‘haven’t started’, ‘in progress’, or ‘done’! Our app uses React on the front end, GraphQL with a Node.js and Express.js server, and MongoDB for the database.
 
   ## Screenshot
-  <img src="./client/images/screenshot.png" width=700px>
+  <img src="./client/images/screenshot2.png" width=700px>
 
   ## Deployed Link
   <a href="https://young-island-68053.herokuapp.com/">Link to Deployed App</a>
