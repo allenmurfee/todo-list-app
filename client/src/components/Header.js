@@ -21,7 +21,7 @@ export default function Header() {
     return (
       <header className="header">
         <div>
-          <h1 className="title"><Link to = "/login">To-do List App</Link></h1>
+          <h1 className="title"><Link to = "/login">Listify <i class="fa-sharp fa-solid fa-list-check"></i></Link></h1>
           <h3>Turn your to-do's into to-done!</h3>
         </div>
         <div className="navbar">
