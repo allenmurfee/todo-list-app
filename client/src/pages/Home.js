@@ -1,17 +1,19 @@
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import { Navigate } from "react-router-dom";
 import Auth from "../utils/auth";
 import { QUERY_USER } from "../utils/queries";
 import { useQuery } from "@apollo/client";
 import { Link } from "react-router-dom";
-import AddNewProject from "../components/AddNewProject"
+import AddNewProject from "../components/AddNewProject";
 import DeleteProject from "../components/DeleteProject";
 
 //Render home page
 const Home = () => {
   const { loading, data } = useQuery(QUERY_USER);
-  console.log("Home page data", data);
   let projects = data?.user.projects || [];
+
+  console.log("Home page data", data);
+  // let projects = data?.user.projects || [];
   console.log(projects);
 
   if (loading && Auth.loggedIn()) {
@@ -40,12 +42,17 @@ const Home = () => {
                 </li>
               ))}
             </ol>
-            <AddNewProject userId={data.user._id}/>
+            <AddNewProject userId={data.user._id} />
           </div>
         </div>
       </div>
     ) : (
-      <h2>No To-do Lists Yet!</h2>
+      <div>
+        <h2>No To-do Lists Yet!</h2>
+        <div className="card start">
+          <AddNewProject userId={data.user._id} />
+        </div>
+      </div>
     );
   } else {
     return <Navigate to="/login" replace={true} />;

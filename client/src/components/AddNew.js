@@ -17,6 +17,7 @@ export default function AddNew(props) {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     e.preventDefault();
     console.log("projectId", props.projectId)
+    console.log("new to do", newToDo)
     const { data } = await addToDo({
       variables: {
         projectId: props.projectId,
