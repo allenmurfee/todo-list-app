@@ -42,8 +42,8 @@ const Home = () => {
                 </li>
               ))}
             </ol>
-            <AddNewProject userId={data.user._id} />
           </div>
+          <AddNewProject userId={data.user._id} />
         </div>
       </div>
     ) : (

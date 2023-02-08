@@ -22,7 +22,7 @@ export default function DeleteToDo({toDoId, projectId}) {
 
   return (
     <button className="list-button" title="Delete" onClick={handleClick}>
-      X
+    <i class="fa-solid fa-xmark"></i>
     </button>
   );
 }

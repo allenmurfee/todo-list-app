@@ -22,8 +22,8 @@ export default function ChangeStatus({ toDoId, status, projectId }) {
   };
 
   return (
-    <button className="list-button" title="Delete" onClick={handleClick}>
-      move
+    <button className="list-button" title="Move" onClick={handleClick}>
+    <i class="fa-solid fa-arrow-right"></i>
     </button>
   );
 }

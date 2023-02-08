@@ -55,7 +55,7 @@ function ProjectComponent() {
     console.log("finished to dos", finishedToDos);
 
     return (
-      <div className="container">
+      <div className="project-container">
         <section className="card start">
           <p>Haven't Started</p>
           <ol>

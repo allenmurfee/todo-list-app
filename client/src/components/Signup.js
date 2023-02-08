@@ -80,7 +80,7 @@ const Signup = (props) => {
             onChange={handleChange}
           />
           <br />
-          <button type="submit">Submit</button>
+          <button className="nav-button" type="submit">Submit</button>
           {data ? (
             <Navigate to="/" replace={true} />
           ) : (

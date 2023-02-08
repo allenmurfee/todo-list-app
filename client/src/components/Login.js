@@ -68,7 +68,8 @@ const Login = (props) => {
             onChange={handleChange}
           />
           <br />
-          <button type="submit">Submit</button>
+          <button className="nav-button" type="submit">Submit</button>
+          <p></p>
         </form>
     </div>
   );
