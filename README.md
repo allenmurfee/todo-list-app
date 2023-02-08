@@ -1,4 +1,4 @@
-# To-do List App
+# ***Listify***: A To-Do List App
 
   ## Table of Contents
   - [Description](#description)
