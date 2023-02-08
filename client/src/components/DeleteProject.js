@@ -30,7 +30,7 @@ export default function DeleteProject({ projectId, userId }) {
 
   return (
     <button className="list-button" title="Delete" onClick={handleClick}>
-      X
+    <i class="fa-solid fa-xmark"></i>
     </button>
   );
 }

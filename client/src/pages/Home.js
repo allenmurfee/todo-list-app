@@ -42,14 +42,14 @@ const Home = () => {
                 </li>
               ))}
             </ol>
-            <AddNewProject userId={data.user._id} />
           </div>
+          <AddNewProject userId={data.user._id} />
         </div>
       </div>
     ) : (
       <div>
-        <h2>No To-do Lists Yet!</h2>
-        <div className="card start">
+        <h2 className="small-header">No To-do Lists Yet!</h2>
+        <div className="new-todo">
           <AddNewProject userId={data.user._id} />
         </div>
       </div>

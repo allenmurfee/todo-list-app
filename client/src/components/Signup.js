@@ -46,9 +46,8 @@ const Signup = (props) => {
     });
   };
   return (
-    <div>
+    <div className="card start">
       {/* Sign Up form */}
-      <div className="card start">
         <h3>Sign Up!</h3>
         <form onSubmit={handleFormSubmit}>
           <label>Name:</label>
@@ -81,14 +80,13 @@ const Signup = (props) => {
             onChange={handleChange}
           />
           <br />
-          <button type="submit">Submit</button>
+          <button className="nav-button" type="submit">Submit</button>
           {data ? (
             <Navigate to="/" replace={true} />
           ) : (
-            <p>Invalid email. Please try again.</p>
+            <p></p>
           )}
         </form>
-      </div>
     </div>
   );
 };

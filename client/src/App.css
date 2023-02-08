@@ -95,7 +95,7 @@ body {
    text-align: center;
 }
 
-.container {
+.project-container {
    width: 70%;
    margin: 2% 15%;
    display: flex;
@@ -104,12 +104,13 @@ body {
 }
 
 .card {
-   width: 32%;
+   width: 60%;
    text-align: center;
    border-radius: 12px;
    border-style: solid;
    border-color: black;
    font-size: 25px;
+   margin-bottom: 10px;
 }
 
 .start {
@@ -129,19 +130,24 @@ body {
 
 .list-item {
    border-style: solid;
-   width: 90%;
+   width: 95%;
    border-radius: 8px;
    padding: 3px;
    margin-top: 7px;
-   background-color: rgb(204, 197, 185, .5)
+   background-color: rgb(204, 197, 185, .5);
+}
+.list-item a {
+   text-decoration: none;
+   color: var(--lightgrey)
 }
 
 .list-button {
    border-style: none;
    border-radius: 6px;
-   color: var(--red);
-   background-color: transparent;
+   color: var(--white);
+   background-color: var(--red);
    cursor: pointer;
+   margin-left: 3px;
 }
 
 /* New To-do */
@@ -150,8 +156,8 @@ body {
    text-align: center;
    border-style: solid;
    border-radius: 12px;
-   width: 20%;
-   margin: 3% 40%;
+   width: 40%;
+   margin: 3% 30%;
 
 }
 
@@ -165,6 +171,7 @@ body {
    border-style: none;
    border-radius: 5px;
    padding: 5px;
+   cursor: pointer;
 }
 
 /* Profile Items*/
@@ -186,6 +193,7 @@ body {
 
 .text-input {
    margin-bottom: 10px;
+   margin-left: 5px;
 }
 
 /* Footer */
