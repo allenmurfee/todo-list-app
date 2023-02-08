@@ -5,6 +5,7 @@ import Auth from "../utils/auth";
 import { Navigate, useParams } from "react-router-dom";
 import AddNew from "../components/AddNew";
 import DeleteToDo from "../components/DeleteToDo";
+import ChangeStatus from "../components/ChangeStatus";
 
 function ProjectComponent() {
   const { projectId } = useParams();
@@ -29,11 +30,11 @@ function ProjectComponent() {
     let toDos = project.toDos ? project.toDos : [];
     console.log("toDos:", toDos);
     // console.log(typeof toDos);
-    console.log(toDos[0].status);
     // console.log(toDos.length)
     // let stringifyToDos = JSON.stringify(toDos)
     // console.log(stringifyToDos)
 
+    //Push each task into array based on status
     for (let i = 0; i < toDos.length; i++) {
       switch (toDos[i].status) {
         case "notStarted":
@@ -58,17 +59,23 @@ function ProjectComponent() {
         <section className="card start">
           <p>Haven't Started</p>
           <ol>
+            {/* Map through each Not Started task to render */}
             {notStartedToDos.map((toDo) => {
               return (
                 <li className="list-item">
                   {toDo.description}
-                  <button className="list-button" title="Edit">
+                  {/* <button className="list-button" title="Edit">
                     /
-                  </button>
-                  <button
+                  </button> */}
+                  {/* <button
                     className="list-button"
                     title="Move to 'In Progress'"
-                  ></button>
+                  ></button> */}
+                  <ChangeStatus
+                    toDoId={toDo._id}
+                    status={toDo.status}
+                    projectId={projectId}
+                  />
                   <DeleteToDo toDoId={toDo._id} projectId={projectId} />
                 </li>
               );
@@ -78,17 +85,23 @@ function ProjectComponent() {
         <section className="card progress">
           <p>In Progress</p>
           <ol>
+            {/* Map through each In Progress task to render */}
             {inProgressToDos.map((toDo) => {
               return (
                 <li className="list-item">
                   {toDo.description}
-                  <button className="list-button" title="Edit">
+                  {/* <button className="list-button" title="Edit">
                     /
-                  </button>
-                  <button
+                  </button> */}
+                  {/* <button
                     className="list-button"
-                    title="Move to 'In Progress'"
-                  ></button>
+                    title="Move to 'Done'"
+                  ></button> */}
+                  <ChangeStatus
+                    toDoId={toDo._id}
+                    status={toDo.status}
+                    projectId={projectId}
+                  />
                   <DeleteToDo toDoId={toDo._id} projectId={projectId} />
                 </li>
               );
@@ -98,26 +111,27 @@ function ProjectComponent() {
         <section className="card done">
           <p>Done</p>
           <ol>
+            {/* Map through each Finished task to render */}
             {finishedToDos.map((toDo) => {
               return (
                 <li className="list-item">
                   {toDo.description}
-                  <button className="list-button" title="Edit">
+                  {/* <button className="list-button" title="Edit">
                     /
-                  </button>
-                  <button
+                  </button> */}
+                  {/* <button
                     className="list-button"
                     title="Move to 'In Progress'"
-                  ></button>
+                  ></button> */}
                   <DeleteToDo toDoId={toDo._id} projectId={projectId} />
                 </li>
               );
             })}
           </ol>
         </section>
-        <AddNew projectId={projectId}/>
+        <AddNew projectId={projectId} />
       </div>
-    );
+    ) 
   } else {
     return <Navigate to="/login" replace={true} />;
   }

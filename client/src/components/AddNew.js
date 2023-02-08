@@ -8,15 +8,17 @@ export default function AddNew(props) {
 
   const handleInputChange = (e) => {
     const { value } = e.target;
-
+    
     
     return setNewToDo(value);
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     e.preventDefault();
-    const { data } = addToDo({
+    console.log("projectId", props.projectId)
+    console.log("new to do", newToDo)
+    const { data } = await addToDo({
       variables: {
         projectId: props.projectId,
         description: newToDo,

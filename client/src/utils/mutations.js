@@ -13,29 +13,67 @@ export const LOGIN = gql`
 `;
 
 export const ADD_PROJECT = gql`
-  mutation AddProject($userId: ID!, $title: String!, $description: String!, $deadline: String!) {
-    addProject(userId: $userId, title: $title, description: $description, deadline: $deadline) {
+  mutation AddProject(
+    $userId: ID!
+    $title: String!
+    $description: String!
+    $deadline: String!
+  ) {
+    addProject(
+      userId: $userId
+      title: $title
+      description: $description
+      deadline: $deadline
+    ) {
       _id
       name
       email
       projects {
         _id
         title
+        description
+        deadline
       }
     }
   }
 `;
-export const ADD_TODO = gql`
-  mutation AddToDo($description: String!, $projectId: ID) {
-    addToDo(description: $description, projectId: $projectId) {
+
+export const ADD_PROJECT_TO_DB = gql`
+  mutation addProjectToDb(
+    $title: String!
+    $description: String!
+    $deadline: String!
+  ) {
+    addProjectToDb(
+      title: $title
+      description: $description
+      deadline: $deadline
+    ) {
       _id
+      deadline
       description
+      title
       toDos {
         _id
         description
         status
       }
+    }
+  }
+`;
+
+export const ADD_TODO = gql`
+  mutation AddToDo($projectId: ID, $description: String!) {
+    addToDo(projectId: $projectId, description: $description) {
+      _id
+      deadline
+      description
       title
+      toDos {
+        _id
+        description
+        status
+      }
     }
   }
 `;
@@ -93,12 +131,31 @@ export const REMOVE_PROJECT_FROM_USER = gql`
   }
 `;
 
-export const UPDATE_TODO = gql`
-  mutation updateToDo($toDoId: [ID]!, $description: String!, $status: String!) {
-    updateToDo(toDoId: $toDoId, description: $description, status: $status) {
+export const ADD_PROJECT_TO_USER = gql`
+  mutation Mutation($userId: ID!, $projectId: ID!) {
+    addProjectToUser(userId: $userId, projectId: $projectId) {
       _id
+      email
+      name
+      projects {
+        _id
+      }
+    }
+  }
+`;
+
+export const UPDATE_TODO = gql`
+  mutation UpdateToDo($projectId: ID!, $status: String!, $toDoId: ID!) {
+    updateToDo(projectId: $projectId, status: $status, toDoId: $toDoId) {
+      _id
+      deadline
       description
-      status
+      title
+      toDos {
+        _id
+        description
+        status
+      }
     }
   }
 `;

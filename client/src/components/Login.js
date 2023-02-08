@@ -6,7 +6,6 @@ import { LOGIN } from "../utils/mutations";
 
 const Login = (props) => {
   const [formState, setFormState] = useState({ email: "", password: "" });
-  //   LOGIN_USER ISNT DEFINED YET
   const [login, { error, data }] = useMutation(LOGIN);
 
   const handleChange = (event) => {
@@ -18,6 +17,7 @@ const Login = (props) => {
     });
   };
 
+  //Attempt to Login on form submit
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     console.log(formState);
@@ -31,9 +31,7 @@ const Login = (props) => {
       var authStuff = await Auth.login(data.login.token);
       console.log("Auth Stuff");
       console.log(authStuff);
-      // Auth.login(data.login.token).then(() => {
-      //   return <Navigate to="/" replace={true}/>;
-      // });
+
     } catch (e) {
       console.error("Login error", e);
     }
@@ -47,7 +45,7 @@ const Login = (props) => {
 
   return (
     <div>
-      {/* LOGIN */}
+      {/* Login Form */}
       <div className="card done">
         <h3>Log In!</h3>
         <form onSubmit={handleFormSubmit}>
