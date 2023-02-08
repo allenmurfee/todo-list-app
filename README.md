@@ -15,7 +15,7 @@
   <img src="./client/images/screenshot.png" width=700px>
 
   ## Deployed Link
-  <a href="https://young-island-68053.herokuapp.com/login">Link to Deployed App</a>
+  <a href="https://young-island-68053.herokuapp.com/">Link to Deployed App</a>
   
   ## Technologies Used
   ![image](https://img.shields.io/badge/Apollo%20GraphQL-311C87?&style=for-the-badge&logo=Apollo%20GraphQL&logoColor=white)
